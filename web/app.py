@@ -5,6 +5,7 @@ Flask Web 应用
 
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session, flash
 from config_manager import ConfigManager
+from notification_tester import NotificationTester
 import secrets
 import os
 
@@ -258,6 +259,87 @@ def api_regenerate_token(user_id):
         return jsonify({"success": True, "token": new_token})
     else:
         return jsonify({"error": "生成失败"}), 400
+
+
+@app.route("/api/user/<user_id>/test-notification", methods=["POST"])
+def api_test_notification(user_id):
+    """
+    测试用户的通知配置
+
+    Body:
+        {
+            "channel": "telegram" | "dingtalk" | "wework" | "feishu" | "email" | "ntfy" | "all"
+        }
+    """
+    data = request.json
+    channel = data.get("channel", "all")
+
+    # 获取用户的通知配置
+    notification_config = config_mgr.notif_mgr.get_config(user_id)
+
+    if not notification_config:
+        return jsonify({"error": "未找到通知配置"}), 404
+
+    tester = NotificationTester()
+
+    # 测试单个渠道
+    if channel != "all":
+        if channel == "telegram":
+            success, message = tester.test_telegram(
+                notification_config.get("telegram_bot_token", ""),
+                notification_config.get("telegram_chat_id", "")
+            )
+        elif channel == "dingtalk":
+            success, message = tester.test_dingtalk(
+                notification_config.get("dingtalk_url", "")
+            )
+        elif channel == "wework":
+            success, message = tester.test_wework(
+                notification_config.get("wework_url", "")
+            )
+        elif channel == "feishu":
+            success, message = tester.test_feishu(
+                notification_config.get("feishu_url", "")
+            )
+        elif channel == "email":
+            success, message = tester.test_email(
+                notification_config.get("email_from", ""),
+                notification_config.get("email_password", ""),
+                notification_config.get("email_to", ""),
+                notification_config.get("email_smtp_server", ""),
+                notification_config.get("email_smtp_port", "")
+            )
+        elif channel == "ntfy":
+            success, message = tester.test_ntfy(
+                notification_config.get("ntfy_server_url", "https://ntfy.sh"),
+                notification_config.get("ntfy_topic", ""),
+                notification_config.get("ntfy_token", "")
+            )
+        else:
+            return jsonify({"error": f"不支持的渠道: {channel}"}), 400
+
+        return jsonify({
+            "success": success,
+            "message": message,
+            "channel": channel
+        })
+
+    # 测试所有渠道
+    else:
+        results = tester.test_all_channels(notification_config)
+
+        # 统计成功和失败的数量
+        total = len(results)
+        success_count = sum(1 for success, _ in results.values() if success)
+
+        return jsonify({
+            "success": success_count > 0,
+            "results": {
+                channel: {"success": success, "message": message}
+                for channel, (success, message) in results.items()
+            },
+            "summary": f"测试完成：{success_count}/{total} 个渠道成功"
+        })
 
 
 # ==================== 错误处理 ====================

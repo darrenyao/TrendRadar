@@ -38,12 +38,18 @@
 - 邮件
 - ntfy
 
-### 4. 推送配置
+### 4. 通知测试功能
+- ✅ 单个渠道即时测试
+- ✅ 批量测试所有渠道
+- ✅ 详细的错误提示和解决方案
+- ✅ 实时显示测试结果
+
+### 5. 推送配置
 - 推送模式（daily/incremental/current）
 - 排名高亮阈值
 - 推送时间窗口控制
 
-### 5. 配置导出
+### 6. 配置导出
 - 导出单个用户配置为 YAML
 - 批量导出所有用户配置
 - 兼容 TrendRadar 主程序格式
@@ -158,7 +164,51 @@ Webhook URL: https://oapi.dingtalk.com/robot/send?access_token=xxx
 
 3. 点击"保存通知配置"
 
-### 第5步：配置推送选项
+### 第5步：测试通知配置
+
+在保存配置后，建议立即测试通知是否正常工作：
+
+1. **测试单个渠道**：
+   - 在每个通知渠道卡片右上角点击"测试"按钮
+   - 系统会发送测试消息到对应渠道
+   - 成功或失败信息会立即显示
+
+2. **测试所有渠道**：
+   - 点击"测试所有渠道"按钮
+   - 系统会逐一测试所有已配置的渠道
+   - 在弹窗中查看每个渠道的测试结果
+
+3. **常见测试错误**：
+
+   **Telegram 测试失败**：
+   ```
+   ❌ Bot Token 无效或 Chat ID 错误
+   ✅ 解决：检查 Bot Token 格式和 Chat ID 是否正确
+   ```
+
+   **钉钉测试失败**：
+   ```
+   ❌ 安全设置校验失败
+   ✅ 解决：确保机器人安全设置中添加了关键词"热点"
+   ```
+
+   **邮件测试失败**：
+   ```
+   ❌ SMTP 认证失败
+   ✅ 解决：确认使用的是邮箱授权码，而非登录密码
+   ```
+
+   **企业微信/飞书测试失败**：
+   ```
+   ❌ Webhook URL 无效
+   ✅ 解决：重新复制完整的 Webhook 地址
+   ```
+
+4. **测试消息内容**：
+   - 测试消息会显示配置的用户ID和当前时间
+   - 成功收到测试消息即表示配置正确
+
+### 第6步：配置推送选项
 
 1. 切换到"推送配置"标签页
 2. 设置推送模式：
@@ -169,7 +219,7 @@ Webhook URL: https://oapi.dingtalk.com/robot/send?access_token=xxx
 4. 可选：启用推送时间窗口
 5. 点击"保存推送配置"
 
-### 第6步：导出配置
+### 第7步：导出配置
 
 1. 点击"导出配置"按钮
 2. 配置将保存到 `config/users/用户ID.yaml`
@@ -250,6 +300,38 @@ Content-Type: application/json
   "telegram_bot_token": "xxx",
   "telegram_chat_id": "123456",
   "dingtalk_url": "https://..."
+}
+```
+
+#### 测试通知配置
+```http
+POST /api/user/<user_id>/test-notification
+Content-Type: application/json
+
+{
+  "channel": "telegram"  // telegram | dingtalk | wework | feishu | email | ntfy | all
+}
+```
+
+**响应示例（单个渠道）**：
+```json
+{
+  "success": true,
+  "message": "✅ Telegram 测试消息发送成功！",
+  "channel": "telegram"
+}
+```
+
+**响应示例（所有渠道）**：
+```json
+{
+  "success": true,
+  "results": {
+    "telegram": {"success": true, "message": "✅ 测试消息发送成功！"},
+    "dingtalk": {"success": false, "message": "❌ 安全设置校验失败"},
+    "email": {"success": true, "message": "✅ 测试邮件发送成功！"}
+  },
+  "summary": "测试完成：2/3 个渠道成功"
 }
 ```
 
