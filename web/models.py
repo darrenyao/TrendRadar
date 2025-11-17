@@ -97,30 +97,41 @@ class Database:
                 push_window_end TEXT DEFAULT '22:00',
                 push_window_once_per_day BOOLEAN DEFAULT 1,
                 source_summary_enabled BOOLEAN DEFAULT 0,
+                source_summary_mode TEXT DEFAULT 'simple',
                 source_summary_max_items INTEGER DEFAULT 3,
+                source_summary_llm_provider TEXT DEFAULT 'openai',
+                source_summary_llm_api_key TEXT DEFAULT '',
+                source_summary_llm_model TEXT DEFAULT 'gpt-4o-mini',
+                source_summary_llm_base_url TEXT DEFAULT '',
+                source_summary_llm_max_tokens INTEGER DEFAULT 150,
+                source_summary_llm_temperature REAL DEFAULT 0.3,
                 FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
             )
         """
         )
 
         # 为已存在的表添加新字段（兼容旧数据库）
-        try:
-            cursor.execute(
-                """
-                ALTER TABLE push_config ADD COLUMN source_summary_enabled BOOLEAN DEFAULT 0
-            """
-            )
-        except Exception:
-            pass  # 字段已存在
+        new_fields = [
+            ("source_summary_enabled", "BOOLEAN DEFAULT 0"),
+            ("source_summary_mode", "TEXT DEFAULT 'simple'"),
+            ("source_summary_max_items", "INTEGER DEFAULT 3"),
+            ("source_summary_llm_provider", "TEXT DEFAULT 'openai'"),
+            ("source_summary_llm_api_key", "TEXT DEFAULT ''"),
+            ("source_summary_llm_model", "TEXT DEFAULT 'gpt-4o-mini'"),
+            ("source_summary_llm_base_url", "TEXT DEFAULT ''"),
+            ("source_summary_llm_max_tokens", "INTEGER DEFAULT 150"),
+            ("source_summary_llm_temperature", "REAL DEFAULT 0.3"),
+        ]
 
-        try:
-            cursor.execute(
+        for field_name, field_type in new_fields:
+            try:
+                cursor.execute(
+                    f"""
+                    ALTER TABLE push_config ADD COLUMN {field_name} {field_type}
                 """
-                ALTER TABLE push_config ADD COLUMN source_summary_max_items INTEGER DEFAULT 3
-            """
-            )
-        except Exception:
-            pass  # 字段已存在
+                )
+            except Exception:
+                pass  # 字段已存在
 
         conn.commit()
         conn.close()
@@ -549,7 +560,14 @@ class PushConfigManager:
             "push_window_end",
             "push_window_once_per_day",
             "source_summary_enabled",
+            "source_summary_mode",
             "source_summary_max_items",
+            "source_summary_llm_provider",
+            "source_summary_llm_api_key",
+            "source_summary_llm_model",
+            "source_summary_llm_base_url",
+            "source_summary_llm_max_tokens",
+            "source_summary_llm_temperature",
         ]
 
         updates = []

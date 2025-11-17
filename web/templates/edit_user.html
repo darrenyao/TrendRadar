@@ -379,14 +379,88 @@
                                     <label class="form-check-label">启用来源摘要</label>
                                 </div>
                                 <div class="form-text mb-3">
-                                    启用后，每个来源（如微博热搜、知乎热榜）只显示前N条标题，超出部分显示"... 及其他X条"
+                                    对每个来源（如微博热搜、知乎热榜）进行摘要显示，避免信息过载
                                 </div>
 
                                 <div id="source_summary_settings" style="{{ 'display: none;' if not config.push.source_summary_enabled else '' }}">
-                                    <label class="form-label">每个来源最多显示条数</label>
-                                    <input type="number" class="form-control" name="source_summary_max_items"
-                                           value="{{ config.push.source_summary_max_items or 3 }}" min="1" max="20">
-                                    <div class="form-text">建议设置为 3-5 条，避免信息过载</div>
+                                    <!-- 摘要模式选择 -->
+                                    <div class="mb-3">
+                                        <label class="form-label">摘要模式</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="source_summary_mode" id="mode_simple"
+                                                   value="simple" {{ 'checked' if config.push.source_summary_mode == 'simple' or not config.push.source_summary_mode else '' }}
+                                                   onchange="toggleSummaryMode()">
+                                            <label class="form-check-label" for="mode_simple">
+                                                <strong>简单模式</strong> - 只显示前N条标题 + "及其他X条"
+                                            </label>
+                                        </div>
+                                        <div class="form-check mt-2">
+                                            <input class="form-check-input" type="radio" name="source_summary_mode" id="mode_llm"
+                                                   value="llm" {{ 'checked' if config.push.source_summary_mode == 'llm' else '' }}
+                                                   onchange="toggleSummaryMode()">
+                                            <label class="form-check-label" for="mode_llm">
+                                                <strong>LLM智能摘要</strong> - 使用AI总结核心内容
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- 简单模式配置 -->
+                                    <div id="simple_mode_config" style="{{ 'display: none;' if config.push.source_summary_mode == 'llm' else '' }}">
+                                        <label class="form-label">每个来源最多显示条数</label>
+                                        <input type="number" class="form-control" name="source_summary_max_items"
+                                               value="{{ config.push.source_summary_max_items or 3 }}" min="1" max="20">
+                                        <div class="form-text mb-3">建议设置为 3-5 条</div>
+                                    </div>
+
+                                    <!-- LLM模式配置 -->
+                                    <div id="llm_mode_config" style="{{ 'display: none;' if config.push.source_summary_mode != 'llm' else '' }}">
+                                        <div class="mb-3">
+                                            <label class="form-label">LLM提供商</label>
+                                            <select class="form-select" name="source_summary_llm_provider">
+                                                <option value="openai" {{ 'selected' if config.push.source_summary_llm_provider == 'openai' or not config.push.source_summary_llm_provider else '' }}>OpenAI</option>
+                                                <option value="anthropic" {{ 'selected' if config.push.source_summary_llm_provider == 'anthropic' else '' }}>Anthropic (Claude)</option>
+                                                <option value="ollama" {{ 'selected' if config.push.source_summary_llm_provider == 'ollama' else '' }}>Ollama (本地)</option>
+                                                <option value="qwen" {{ 'selected' if config.push.source_summary_llm_provider == 'qwen' else '' }}>通义千问</option>
+                                                <option value="deepseek" {{ 'selected' if config.push.source_summary_llm_provider == 'deepseek' else '' }}>DeepSeek</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">API Key</label>
+                                            <input type="password" class="form-control" name="source_summary_llm_api_key"
+                                                   value="{{ config.push.source_summary_llm_api_key or '' }}"
+                                                   placeholder="Ollama本地部署可留空">
+                                            <div class="form-text">妥善保管，不要泄露</div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">模型名称</label>
+                                            <input type="text" class="form-control" name="source_summary_llm_model"
+                                                   value="{{ config.push.source_summary_llm_model or 'gpt-4o-mini' }}"
+                                                   placeholder="如: gpt-4o-mini, claude-3-5-haiku-latest">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">API Base URL (可选)</label>
+                                            <input type="text" class="form-control" name="source_summary_llm_base_url"
+                                                   value="{{ config.push.source_summary_llm_base_url or '' }}"
+                                                   placeholder="自定义API地址，如: http://localhost:11434/v1">
+                                            <div class="form-text">留空使用默认地址</div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">最大Token数</label>
+                                                <input type="number" class="form-control" name="source_summary_llm_max_tokens"
+                                                       value="{{ config.push.source_summary_llm_max_tokens or 150 }}" min="50" max="500">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Temperature</label>
+                                                <input type="number" class="form-control" name="source_summary_llm_temperature"
+                                                       value="{{ config.push.source_summary_llm_temperature or 0.3 }}" min="0" max="1" step="0.1">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -604,7 +678,14 @@ async function savePush() {
         push_window_end: formData.get('push_window_end'),
         push_window_once_per_day: formData.get('push_window_once_per_day') === 'on',
         source_summary_enabled: formData.get('source_summary_enabled') === 'on',
-        source_summary_max_items: parseInt(formData.get('source_summary_max_items'))
+        source_summary_mode: formData.get('source_summary_mode'),
+        source_summary_max_items: parseInt(formData.get('source_summary_max_items')),
+        source_summary_llm_provider: formData.get('source_summary_llm_provider'),
+        source_summary_llm_api_key: formData.get('source_summary_llm_api_key'),
+        source_summary_llm_model: formData.get('source_summary_llm_model'),
+        source_summary_llm_base_url: formData.get('source_summary_llm_base_url'),
+        source_summary_llm_max_tokens: parseInt(formData.get('source_summary_llm_max_tokens')),
+        source_summary_llm_temperature: parseFloat(formData.get('source_summary_llm_temperature'))
     };
 
     try {
@@ -629,6 +710,21 @@ function toggleSourceSummarySettings() {
     const enabled = document.getElementById('source_summary_enabled').checked;
     const settings = document.getElementById('source_summary_settings');
     settings.style.display = enabled ? 'block' : 'none';
+}
+
+// 切换摘要模式配置显示
+function toggleSummaryMode() {
+    const isLlmMode = document.getElementById('mode_llm').checked;
+    const simpleConfig = document.getElementById('simple_mode_config');
+    const llmConfig = document.getElementById('llm_mode_config');
+
+    if (isLlmMode) {
+        simpleConfig.style.display = 'none';
+        llmConfig.style.display = 'block';
+    } else {
+        simpleConfig.style.display = 'block';
+        llmConfig.style.display = 'none';
+    }
 }
 
 // 导出配置

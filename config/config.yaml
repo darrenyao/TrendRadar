@@ -41,7 +41,16 @@ notification:
   # 适用场景：当某个来源有很多条新闻时，只显示前几条，避免信息过载
   source_summary:
     enabled: false  # 是否启用来源摘要，默认关闭（显示所有）
-    max_items_per_source: 3  # 每个来源最多显示几条标题，超出部分显示"... 及其他X条"
+    mode: "simple"  # 摘要模式: "simple"(简单) | "llm"(AI智能摘要)
+    max_items_per_source: 3  # simple模式: 每个来源最多显示几条标题，超出部分显示"... 及其他X条"
+
+    # LLM智能摘要配置 (mode=llm时生效)
+    llm_provider: "openai"  # LLM提供商: openai | anthropic | ollama | qwen | deepseek
+    llm_api_key: ""  # API密钥 (ollama本地部署可留空)
+    llm_model: "gpt-4o-mini"  # 模型名称
+    llm_base_url: ""  # 自定义API地址(可选)，如: http://localhost:11434/v1 (ollama)
+    llm_max_tokens: 150  # 摘要最大token数
+    llm_temperature: 0.3  # 温度参数(0-1)，越低越稳定
 
   # 🕐 推送时间窗口控制（可选功能）
   # 用途：限制推送的时间范围，避免非工作时间打扰

@@ -98,12 +98,44 @@ def load_config():
             else config_data["notification"]
             .get("source_summary", {})
             .get("enabled", False),
+            "MODE": os.environ.get("SOURCE_SUMMARY_MODE", "").strip()
+            or config_data["notification"]
+            .get("source_summary", {})
+            .get("mode", "simple"),
             "MAX_ITEMS_PER_SOURCE": int(
                 os.environ.get("SOURCE_SUMMARY_MAX_ITEMS", "").strip() or "0"
             )
             or config_data["notification"]
             .get("source_summary", {})
             .get("max_items_per_source", 3),
+            "LLM_PROVIDER": os.environ.get("SOURCE_SUMMARY_LLM_PROVIDER", "").strip()
+            or config_data["notification"]
+            .get("source_summary", {})
+            .get("llm_provider", "openai"),
+            "LLM_API_KEY": os.environ.get("SOURCE_SUMMARY_LLM_API_KEY", "").strip()
+            or config_data["notification"]
+            .get("source_summary", {})
+            .get("llm_api_key", ""),
+            "LLM_MODEL": os.environ.get("SOURCE_SUMMARY_LLM_MODEL", "").strip()
+            or config_data["notification"]
+            .get("source_summary", {})
+            .get("llm_model", "gpt-4o-mini"),
+            "LLM_BASE_URL": os.environ.get("SOURCE_SUMMARY_LLM_BASE_URL", "").strip()
+            or config_data["notification"]
+            .get("source_summary", {})
+            .get("llm_base_url", ""),
+            "LLM_MAX_TOKENS": int(
+                os.environ.get("SOURCE_SUMMARY_LLM_MAX_TOKENS", "").strip() or "0"
+            )
+            or config_data["notification"]
+            .get("source_summary", {})
+            .get("llm_max_tokens", 150),
+            "LLM_TEMPERATURE": float(
+                os.environ.get("SOURCE_SUMMARY_LLM_TEMPERATURE", "").strip() or "0"
+            )
+            or config_data["notification"]
+            .get("source_summary", {})
+            .get("llm_temperature", 0.3),
         },
         "PUSH_WINDOW": {
             "ENABLED": os.environ.get("PUSH_WINDOW_ENABLED", "").strip().lower()
@@ -1410,8 +1442,30 @@ def prepare_report_data(
                             "source_id": source_id,
                             "source_name": source_name,
                             "titles": source_titles,
+                            "summary": None,  # 将在后续LLM处理中填充
                         }
                     )
+
+        # 如果启用LLM摘要模式，生成摘要
+        if (
+            CONFIG["SOURCE_SUMMARY"]["ENABLED"]
+            and CONFIG["SOURCE_SUMMARY"]["MODE"] == "llm"
+            and processed_new_titles
+        ):
+            try:
+                from llm_summarizer import generate_source_summaries
+
+                summaries = generate_source_summaries(
+                    processed_new_titles, CONFIG["SOURCE_SUMMARY"]
+                )
+
+                # 将摘要添加到对应的来源数据中
+                for source_data in processed_new_titles:
+                    source_id = source_data["source_id"]
+                    if source_id in summaries:
+                        source_data["summary"] = summaries[source_id]
+            except Exception as e:
+                print(f"LLM摘要生成失败，回退到简单模式: {str(e)}")
 
     processed_stats = []
     for stat in stats:
@@ -3151,6 +3205,9 @@ def split_content_into_batches(
 
         # 逐个处理新增新闻来源
         for source_data in report_data["new_titles"]:
+            # 检查是否有LLM摘要
+            has_summary = source_data.get("summary") is not None
+
             source_header = ""
             if format_type == "wework":
                 source_header = f"**{source_data['source_name']}** ({len(source_data['titles'])} 条):\n\n"
@@ -3163,6 +3220,32 @@ def split_content_into_batches(
             elif format_type == "dingtalk":
                 source_header = f"**{source_data['source_name']}** ({len(source_data['titles'])} 条):\n\n"
 
+            # 如果有LLM摘要，直接显示摘要
+            if has_summary:
+                summary_text = source_data["summary"]
+                if format_type in ["wework", "feishu", "dingtalk", "ntfy"]:
+                    summary_line = f"💡 **AI摘要**: {summary_text}\n\n"
+                else:  # telegram
+                    summary_line = f"💡 AI摘要: {summary_text}\n\n"
+
+                source_content = source_header + summary_line
+
+                test_content = current_batch + source_content
+                if (
+                    len(test_content.encode("utf-8")) + len(base_footer.encode("utf-8"))
+                    >= max_bytes
+                ):
+                    if current_batch_has_content:
+                        batches.append(current_batch + base_footer)
+                    current_batch = base_header + new_header + source_content
+                    current_batch_has_content = True
+                else:
+                    current_batch = test_content
+                    current_batch_has_content = True
+
+                continue  # 跳过标题详细显示
+
+            # 如果没有LLM摘要，按原来的方式显示标题列表
             # 确定要处理的标题数量（支持来源摘要）
             total_titles = len(source_data["titles"])
             if CONFIG["SOURCE_SUMMARY"]["ENABLED"]:

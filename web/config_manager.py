@@ -154,7 +154,14 @@ class ConfigManager:
                 },
                 "source_summary": {
                     "enabled": bool(push.get("source_summary_enabled", False)),
+                    "mode": push.get("source_summary_mode", "simple"),
                     "max_items_per_source": int(push.get("source_summary_max_items", 3)),
+                    "llm_provider": push.get("source_summary_llm_provider", "openai"),
+                    "llm_api_key": push.get("source_summary_llm_api_key", ""),
+                    "llm_model": push.get("source_summary_llm_model", "gpt-4o-mini"),
+                    "llm_base_url": push.get("source_summary_llm_base_url", ""),
+                    "llm_max_tokens": int(push.get("source_summary_llm_max_tokens", 150)),
+                    "llm_temperature": float(push.get("source_summary_llm_temperature", 0.3)),
                 },
             },
         }
