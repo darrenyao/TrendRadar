@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}创建用户 - TrendRadar{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-person-plus"></i> 创建新用户</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">用户名称 <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name" required
+                               placeholder="例如：张三">
+                        <div class="form-text">用于标识用户，可以是姓名或昵称</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="user_id" class="form-label">用户ID（可选）</label>
+                        <input type="text" class="form-control" id="user_id" name="user_id"
+                               placeholder="留空则自动生成">
+                        <div class="form-text">
+                            自定义用户ID，留空将自动生成格式如 user_abc123 的ID
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle"></i>
+                        <strong>提示：</strong>
+                        创建成功后将生成唯一的 Token，请妥善保管。Token 仅在创建时显示一次。
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-x-circle"></i> 取消
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> 创建用户
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

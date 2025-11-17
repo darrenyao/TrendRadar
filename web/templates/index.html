@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}用户列表 - TrendRadar{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-people"></i> 用户列表
+                    <a href="{{ url_for('create_user') }}" class="btn btn-light btn-sm float-end">
+                        <i class="bi bi-person-plus"></i> 创建用户
+                    </a>
+                </h5>
+            </div>
+            <div class="card-body p-0">
+                {% if users %}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>用户ID</th>
+                                <th>名称</th>
+                                <th>关键词数量</th>
+                                <th>状态</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            <tr>
+                                <td><code>{{ user.user_id }}</code></td>
+                                <td>{{ user.name }}</td>
+                                <td>
+                                    <span class="badge bg-info">
+                                        {{ user.keyword_count }} 个关键词
+                                    </span>
+                                </td>
+                                <td>
+                                    {% if user.enabled %}
+                                        <span class="badge bg-success">启用</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">禁用</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ user.created_at[:16] }}</td>
+                                <td>
+                                    <a href="{{ url_for('edit_user', user_id=user.user_id) }}"
+                                       class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-pencil"></i> 编辑
+                                    </a>
+                                    <button class="btn btn-sm btn-outline-danger"
+                                            onclick="deleteUser('{{ user.user_id }}', '{{ user.name }}')">
+                                        <i class="bi bi-trash"></i> 删除
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center p-5">
+                    <i class="bi bi-inbox" style="font-size: 3rem; color: #ccc;"></i>
+                    <p class="mt-3 text-muted">还没有用户，<a href="{{ url_for('create_user') }}">创建第一个用户</a></p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <button class="btn btn-outline-light" onclick="exportAll()">
+                <i class="bi bi-download"></i> 导出所有配置
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 删除确认模态框 -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">确认删除</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>确定要删除用户 <strong id="deleteUserName"></strong> 吗？</p>
+                <p class="text-danger">此操作将同时删除该用户的所有配置，且不可恢复！</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <form id="deleteForm" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">确认删除</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function deleteUser(userId, userName) {
+    document.getElementById('deleteUserName').textContent = userName;
+    document.getElementById('deleteForm').action = `/user/${userId}/delete`;
+    new bootstrap.Modal(document.getElementById('deleteModal')).show();
+}
+
+async function exportAll() {
+    try {
+        const response = await fetch('/api/export-all');
+        const data = await response.json();
+
+        if (data.success) {
+            alert(`成功导出 ${data.count} 个用户配置到 config/users/ 目录`);
+        } else {
+            alert('导出失败');
+        }
+    } catch (error) {
+        alert('导出失败: ' + error.message);
+    }
+}
+</script>
+{% endblock %}

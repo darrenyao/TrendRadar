@@ -1,0 +1,580 @@
+{% extends "base.html" %}
+
+{% block title %}编辑用户 - {{ config.user.name }} - TrendRadar{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-pencil"></i> 编辑用户: {{ config.user.name }}
+                    <small class="float-end">
+                        <code>{{ config.user.user_id }}</code>
+                    </small>
+                </h5>
+            </div>
+            <div class="card-body">
+                <!-- Tabs -->
+                <ul class="nav nav-tabs mb-3" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#basic-tab">
+                            <i class="bi bi-person"></i> 基本信息
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#keywords-tab">
+                            <i class="bi bi-tags"></i> 关键词配置
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#notification-tab">
+                            <i class="bi bi-bell"></i> 通知配置
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#push-tab">
+                            <i class="bi bi-gear"></i> 推送配置
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- 基本信息 -->
+                    <div class="tab-pane fade show active" id="basic-tab">
+                        <form id="basicForm">
+                            <div class="mb-3">
+                                <label class="form-label">用户ID</label>
+                                <input type="text" class="form-control" value="{{ config.user.user_id }}" disabled>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">用户名称</label>
+                                <input type="text" class="form-control" id="name" value="{{ config.user.name }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">状态</label>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="enabled"
+                                           {{ 'checked' if config.user.enabled else '' }}>
+                                    <label class="form-check-label" for="enabled">启用此用户</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Token</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="token" value="{{ config.user.token }}" disabled>
+                                    <button class="btn btn-outline-secondary" type="button" onclick="toggleTokenVisibility()">
+                                        <i class="bi bi-eye" id="tokenEye"></i>
+                                    </button>
+                                    <button class="btn btn-outline-warning" type="button" onclick="regenerateToken()">
+                                        <i class="bi bi-arrow-clockwise"></i> 重新生成
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-primary" onclick="saveBasic()">
+                                <i class="bi bi-check-circle"></i> 保存基本信息
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 关键词配置 -->
+                    <div class="tab-pane fade" id="keywords-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>当前关键词 <span class="badge bg-primary" id="keywordCount">{{ config.keywords|length }}</span></h6>
+                                <div class="mb-3">
+                                    <div id="keywordsList" class="border rounded p-3" style="max-height: 400px; overflow-y: auto;">
+                                        {% if config.keywords %}
+                                            {% for keyword in config.keywords %}
+                                                <span class="badge bg-secondary me-1 mb-1">
+                                                    {{ keyword }}
+                                                    <i class="bi bi-x-circle" style="cursor: pointer;"
+                                                       onclick="removeKeyword('{{ keyword }}')"></i>
+                                                </span>
+                                            {% endfor %}
+                                        {% else %}
+                                            <p class="text-muted text-center">暂无关键词</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-danger btn-sm" onclick="clearKeywords()">
+                                    <i class="bi bi-trash"></i> 清空所有关键词
+                                </button>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h6>添加关键词</h6>
+                                <div class="mb-3">
+                                    <label class="form-label">单个添加</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="newKeyword" placeholder="输入关键词">
+                                        <button class="btn btn-primary" onclick="addKeyword()">
+                                            <i class="bi bi-plus-circle"></i> 添加
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">批量添加（每行一个）</label>
+                                    <textarea class="form-control" id="batchKeywords" rows="8"
+                                              placeholder="AI&#10;科技&#10;程序员"></textarea>
+                                    <button class="btn btn-success mt-2" onclick="addKeywordsBatch()">
+                                        <i class="bi bi-files"></i> 批量添加
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 通知配置 -->
+                    <div class="tab-pane fade" id="notification-tab">
+                        <form id="notificationForm">
+                            <div class="alert alert-warning">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                请至少配置一种通知方式
+                            </div>
+
+                            <!-- Telegram -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <i class="bi bi-telegram"></i> Telegram
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <label class="form-label">Bot Token</label>
+                                        <input type="text" class="form-control" name="telegram_bot_token"
+                                               value="{{ config.notification.telegram_bot_token or '' }}">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Chat ID</label>
+                                        <input type="text" class="form-control" name="telegram_chat_id"
+                                               value="{{ config.notification.telegram_chat_id or '' }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 钉钉 -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <i class="bi bi-chat-dots"></i> 钉钉
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <label class="form-label">Webhook URL</label>
+                                        <input type="text" class="form-control" name="dingtalk_url"
+                                               value="{{ config.notification.dingtalk_url or '' }}"
+                                               placeholder="https://oapi.dingtalk.com/robot/send?access_token=...">
+                                        <div class="form-text">
+                                            ⚠️ 记得设置安全关键词为 "热点"
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 企业微信 -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <i class="bi bi-wechat"></i> 企业微信
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <label class="form-label">Webhook URL</label>
+                                        <input type="text" class="form-control" name="wework_url"
+                                               value="{{ config.notification.wework_url or '' }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 飞书 -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <i class="bi bi-app"></i> 飞书
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <label class="form-label">Webhook URL</label>
+                                        <input type="text" class="form-control" name="feishu_url"
+                                               value="{{ config.notification.feishu_url or '' }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 邮件 -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <i class="bi bi-envelope"></i> 邮件通知
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">发件人邮箱</label>
+                                            <input type="email" class="form-control" name="email_from"
+                                                   value="{{ config.notification.email_from or '' }}">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">邮箱授权码</label>
+                                            <input type="password" class="form-control" name="email_password"
+                                                   value="{{ config.notification.email_password or '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">收件人（多个用逗号分隔）</label>
+                                        <input type="text" class="form-control" name="email_to"
+                                               value="{{ config.notification.email_to or '' }}">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">SMTP服务器（可选）</label>
+                                            <input type="text" class="form-control" name="email_smtp_server"
+                                                   value="{{ config.notification.email_smtp_server or '' }}">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">SMTP端口（可选）</label>
+                                            <input type="text" class="form-control" name="email_smtp_port"
+                                               value="{{ config.notification.email_smtp_port or '' }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ntfy -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <i class="bi bi-phone"></i> ntfy 推送
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">服务器地址</label>
+                                            <input type="text" class="form-control" name="ntfy_server_url"
+                                                   value="{{ config.notification.ntfy_server_url or 'https://ntfy.sh' }}">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">主题名称</label>
+                                            <input type="text" class="form-control" name="ntfy_topic"
+                                                   value="{{ config.notification.ntfy_topic or '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">访问令牌（可选）</label>
+                                        <input type="password" class="form-control" name="ntfy_token"
+                                               value="{{ config.notification.ntfy_token or '' }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-primary" onclick="saveNotification()">
+                                <i class="bi bi-check-circle"></i> 保存通知配置
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 推送配置 -->
+                    <div class="tab-pane fade" id="push-tab">
+                        <form id="pushForm">
+                            <div class="mb-3">
+                                <label class="form-label">推送模式</label>
+                                <select class="form-select" name="mode">
+                                    <option value="daily" {{ 'selected' if config.push.mode == 'daily' else '' }}>
+                                        Daily - 当日汇总模式
+                                    </option>
+                                    <option value="current" {{ 'selected' if config.push.mode == 'current' else '' }}>
+                                        Current - 当前榜单模式
+                                    </option>
+                                    <option value="incremental" {{ 'selected' if config.push.mode == 'incremental' else '' }}>
+                                        Incremental - 增量监控模式
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">排名高亮阈值</label>
+                                <input type="number" class="form-control" name="rank_threshold"
+                                       value="{{ config.push.rank_threshold or 5 }}" min="1" max="50">
+                                <div class="form-text">排名在此阈值内的新闻将被高亮显示</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">推送时间窗口</label>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" name="push_window_enabled"
+                                           {{ 'checked' if config.push.push_window_enabled else '' }}>
+                                    <label class="form-check-label">启用时间窗口控制</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">开始时间</label>
+                                    <input type="time" class="form-control" name="push_window_start"
+                                           value="{{ config.push.push_window_start or '20:00' }}">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">结束时间</label>
+                                    <input type="time" class="form-control" name="push_window_end"
+                                           value="{{ config.push.push_window_end or '22:00' }}">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" name="push_window_once_per_day"
+                                           {{ 'checked' if config.push.push_window_once_per_day else '' }}>
+                                    <label class="form-check-label">每天只推送一次</label>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-primary" onclick="savePush()">
+                                <i class="bi bi-check-circle"></i> 保存推送配置
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="text-center">
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> 返回列表
+                    </a>
+                    <button class="btn btn-outline-info" onclick="exportConfig()">
+                        <i class="bi bi-download"></i> 导出配置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const userId = '{{ config.user.user_id }}';
+
+// 保存基本信息
+async function saveBasic() {
+    const data = {
+        name: document.getElementById('name').value,
+        enabled: document.getElementById('enabled').checked
+    };
+
+    try {
+        const response = await fetch(`/api/user/${userId}/update`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            alert('保存成功');
+        } else {
+            alert('保存失败');
+        }
+    } catch (error) {
+        alert('保存失败: ' + error.message);
+    }
+}
+
+// Toggle token 可见性
+function toggleTokenVisibility() {
+    const input = document.getElementById('token');
+    const icon = document.getElementById('tokenEye');
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'bi bi-eye-slash';
+    } else {
+        input.type = 'password';
+        icon.className = 'bi bi-eye';
+    }
+}
+
+// 重新生成 token
+async function regenerateToken() {
+    if (!confirm('确定要重新生成 Token 吗？旧的 Token 将失效！')) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`/api/user/${userId}/token/regenerate`, {
+            method: 'POST'
+        });
+        const data = await response.json();
+
+        if (data.success) {
+            document.getElementById('token').value = data.token;
+            alert('Token 已重新生成，请妥善保管！');
+        } else {
+            alert('生成失败');
+        }
+    } catch (error) {
+        alert('生成失败: ' + error.message);
+    }
+}
+
+// 添加关键词
+async function addKeyword() {
+    const keyword = document.getElementById('newKeyword').value.trim();
+    if (!keyword) return;
+
+    try {
+        const response = await fetch(`/api/user/${userId}/keywords`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ keyword })
+        });
+
+        if (response.ok) {
+            document.getElementById('newKeyword').value = '';
+            location.reload();
+        } else {
+            const data = await response.json();
+            alert(data.error || '添加失败');
+        }
+    } catch (error) {
+        alert('添加失败: ' + error.message);
+    }
+}
+
+// 批量添加关键词
+async function addKeywordsBatch() {
+    const keywords = document.getElementById('batchKeywords').value;
+    if (!keywords.trim()) return;
+
+    try {
+        const response = await fetch(`/api/user/${userId}/keywords/batch`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ keywords })
+        });
+        const data = await response.json();
+
+        if (data.success) {
+            alert(`成功添加 ${data.count} 个关键词`);
+            location.reload();
+        } else {
+            alert('添加失败');
+        }
+    } catch (error) {
+        alert('添加失败: ' + error.message);
+    }
+}
+
+// 删除关键词
+async function removeKeyword(keyword) {
+    try {
+        const response = await fetch(`/api/user/${userId}/keywords`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ keyword })
+        });
+
+        if (response.ok) {
+            location.reload();
+        } else {
+            alert('删除失败');
+        }
+    } catch (error) {
+        alert('删除失败: ' + error.message);
+    }
+}
+
+// 清空关键词
+async function clearKeywords() {
+    if (!confirm('确定要清空所有关键词吗？')) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`/api/user/${userId}/keywords/clear`, {
+            method: 'POST'
+        });
+        const data = await response.json();
+
+        if (data.success) {
+            alert(`已清空 ${data.count} 个关键词`);
+            location.reload();
+        } else {
+            alert('清空失败');
+        }
+    } catch (error) {
+        alert('清空失败: ' + error.message);
+    }
+}
+
+// 保存通知配置
+async function saveNotification() {
+    const form = document.getElementById('notificationForm');
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    try {
+        const response = await fetch(`/api/user/${userId}/notification`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            alert('保存成功');
+        } else {
+            const result = await response.json();
+            alert('保存失败: ' + (result.details ? result.details.join(', ') : result.error));
+        }
+    } catch (error) {
+        alert('保存失败: ' + error.message);
+    }
+}
+
+// 保存推送配置
+async function savePush() {
+    const form = document.getElementById('pushForm');
+    const formData = new FormData(form);
+    const data = {
+        mode: formData.get('mode'),
+        rank_threshold: parseInt(formData.get('rank_threshold')),
+        push_window_enabled: formData.get('push_window_enabled') === 'on',
+        push_window_start: formData.get('push_window_start'),
+        push_window_end: formData.get('push_window_end'),
+        push_window_once_per_day: formData.get('push_window_once_per_day') === 'on'
+    };
+
+    try {
+        const response = await fetch(`/api/user/${userId}/push`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            alert('保存成功');
+        } else {
+            alert('保存失败');
+        }
+    } catch (error) {
+        alert('保存失败: ' + error.message);
+    }
+}
+
+// 导出配置
+async function exportConfig() {
+    try {
+        const response = await fetch(`/api/user/${userId}/export`);
+        const data = await response.json();
+
+        if (data.success) {
+            alert(`配置已导出到: ${data.filepath}`);
+        } else {
+            alert('导出失败');
+        }
+    } catch (error) {
+        alert('导出失败: ' + error.message);
+    }
+}
+</script>
+{% endblock %}
