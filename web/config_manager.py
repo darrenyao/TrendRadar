@@ -152,6 +152,10 @@ class ConfigManager:
                     },
                     "once_per_day": bool(push.get("push_window_once_per_day", True)),
                 },
+                "source_summary": {
+                    "enabled": bool(push.get("source_summary_enabled", False)),
+                    "max_items_per_source": int(push.get("source_summary_max_items", 3)),
+                },
             },
         }
 

@@ -96,10 +96,31 @@ class Database:
                 push_window_start TEXT DEFAULT '20:00',
                 push_window_end TEXT DEFAULT '22:00',
                 push_window_once_per_day BOOLEAN DEFAULT 1,
+                source_summary_enabled BOOLEAN DEFAULT 0,
+                source_summary_max_items INTEGER DEFAULT 3,
                 FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
             )
         """
         )
+
+        # 为已存在的表添加新字段（兼容旧数据库）
+        try:
+            cursor.execute(
+                """
+                ALTER TABLE push_config ADD COLUMN source_summary_enabled BOOLEAN DEFAULT 0
+            """
+            )
+        except Exception:
+            pass  # 字段已存在
+
+        try:
+            cursor.execute(
+                """
+                ALTER TABLE push_config ADD COLUMN source_summary_max_items INTEGER DEFAULT 3
+            """
+            )
+        except Exception:
+            pass  # 字段已存在
 
         conn.commit()
         conn.close()
@@ -527,6 +548,8 @@ class PushConfigManager:
             "push_window_start",
             "push_window_end",
             "push_window_once_per_day",
+            "source_summary_enabled",
+            "source_summary_max_items",
         ]
 
         updates = []

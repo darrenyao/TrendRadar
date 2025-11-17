@@ -91,6 +91,20 @@ def load_config():
         "FEISHU_MESSAGE_SEPARATOR": config_data["notification"][
             "feishu_message_separator"
         ],
+        "SOURCE_SUMMARY": {
+            "ENABLED": os.environ.get("SOURCE_SUMMARY_ENABLED", "").strip().lower()
+            in ("true", "1")
+            if os.environ.get("SOURCE_SUMMARY_ENABLED", "").strip()
+            else config_data["notification"]
+            .get("source_summary", {})
+            .get("enabled", False),
+            "MAX_ITEMS_PER_SOURCE": int(
+                os.environ.get("SOURCE_SUMMARY_MAX_ITEMS", "").strip() or "0"
+            )
+            or config_data["notification"]
+            .get("source_summary", {})
+            .get("max_items_per_source", 3),
+        },
         "PUSH_WINDOW": {
             "ENABLED": os.environ.get("PUSH_WINDOW_ENABLED", "").strip().lower()
             in ("true", "1")
@@ -3149,6 +3163,14 @@ def split_content_into_batches(
             elif format_type == "dingtalk":
                 source_header = f"**{source_data['source_name']}** ({len(source_data['titles'])} 条):\n\n"
 
+            # 确定要处理的标题数量（支持来源摘要）
+            total_titles = len(source_data["titles"])
+            if CONFIG["SOURCE_SUMMARY"]["ENABLED"]:
+                max_items = CONFIG["SOURCE_SUMMARY"]["MAX_ITEMS_PER_SOURCE"]
+                titles_to_process = min(max_items, total_titles)
+            else:
+                titles_to_process = total_titles
+
             # 构建第一条新增新闻
             first_news_line = ""
             if source_data["titles"]:
@@ -3195,8 +3217,8 @@ def split_content_into_batches(
                 current_batch_has_content = True
                 start_index = 1
 
-            # 处理剩余新增新闻
-            for j in range(start_index, len(source_data["titles"])):
+            # 处理剩余新增新闻（根据摘要配置限制数量）
+            for j in range(start_index, titles_to_process):
                 title_data = source_data["titles"][j]
                 title_data_copy = title_data.copy()
                 title_data_copy["is_new"] = False
@@ -3230,6 +3252,24 @@ def split_content_into_batches(
                     if current_batch_has_content:
                         batches.append(current_batch + base_footer)
                     current_batch = base_header + new_header + source_header + news_line
+                    current_batch_has_content = True
+                else:
+                    current_batch = test_content
+                    current_batch_has_content = True
+
+            # 如果启用摘要且还有更多标题，添加省略提示
+            if CONFIG["SOURCE_SUMMARY"]["ENABLED"] and total_titles > titles_to_process:
+                remaining = total_titles - titles_to_process
+                summary_line = f"  ... 及其他 {remaining} 条\n"
+
+                test_content = current_batch + summary_line
+                if (
+                    len(test_content.encode("utf-8")) + len(base_footer.encode("utf-8"))
+                    >= max_bytes
+                ):
+                    if current_batch_has_content:
+                        batches.append(current_batch + base_footer)
+                    current_batch = base_header + new_header + source_header + summary_line
                     current_batch_has_content = True
                 else:
                     current_batch = test_content

@@ -366,6 +366,30 @@
                                 </div>
                             </div>
 
+                            <hr class="my-4">
+
+                            <div class="mb-3">
+                                <label class="form-label">
+                                    <i class="bi bi-card-list"></i> 来源摘要设置
+                                </label>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="source_summary_enabled" name="source_summary_enabled"
+                                           {{ 'checked' if config.push.source_summary_enabled else '' }}
+                                           onchange="toggleSourceSummarySettings()">
+                                    <label class="form-check-label">启用来源摘要</label>
+                                </div>
+                                <div class="form-text mb-3">
+                                    启用后，每个来源（如微博热搜、知乎热榜）只显示前N条标题，超出部分显示"... 及其他X条"
+                                </div>
+
+                                <div id="source_summary_settings" style="{{ 'display: none;' if not config.push.source_summary_enabled else '' }}">
+                                    <label class="form-label">每个来源最多显示条数</label>
+                                    <input type="number" class="form-control" name="source_summary_max_items"
+                                           value="{{ config.push.source_summary_max_items or 3 }}" min="1" max="20">
+                                    <div class="form-text">建议设置为 3-5 条，避免信息过载</div>
+                                </div>
+                            </div>
+
                             <button type="button" class="btn btn-primary" onclick="savePush()">
                                 <i class="bi bi-check-circle"></i> 保存推送配置
                             </button>
@@ -578,7 +602,9 @@ async function savePush() {
         push_window_enabled: formData.get('push_window_enabled') === 'on',
         push_window_start: formData.get('push_window_start'),
         push_window_end: formData.get('push_window_end'),
-        push_window_once_per_day: formData.get('push_window_once_per_day') === 'on'
+        push_window_once_per_day: formData.get('push_window_once_per_day') === 'on',
+        source_summary_enabled: formData.get('source_summary_enabled') === 'on',
+        source_summary_max_items: parseInt(formData.get('source_summary_max_items'))
     };
 
     try {
@@ -596,6 +622,13 @@ async function savePush() {
     } catch (error) {
         alert('保存失败: ' + error.message);
     }
+}
+
+// 切换来源摘要设置显示
+function toggleSourceSummarySettings() {
+    const enabled = document.getElementById('source_summary_enabled').checked;
+    const settings = document.getElementById('source_summary_settings');
+    settings.style.display = enabled ? 'block' : 'none';
 }
 
 // 导出配置
