@@ -287,9 +287,50 @@ export TWITTER_DEBUG=true
 3. **速率限制** - 建议适当设置抓取间隔，避免被 Twitter 限制
 4. **LLM 成本** - 每次分析会消耗 LLM API 调用额度
 
+## Supabase 云端存储
+
+启用 Supabase 后，数据将同步到云端，支持：
+
+- 跨设备数据访问
+- AI 问答助理（语义检索）
+- 数据持久化存储
+
+### 配置
+
+```bash
+# .env
+SUPABASE_ENABLED=true
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your-anon-key
+```
+
+### 数据库初始化
+
+在 Supabase SQL 编辑器中执行 `agent_service/supabase/migrations/001_initial_schema.sql`
+
+## Agent Service（AI 问答助理）
+
+启动 Agent Service 后，可以通过 API 与 AI 助理进行对话：
+
+```bash
+# 启动服务
+cd agent_service
+npm install
+npm run dev
+
+# 发送消息
+curl -X POST http://localhost:3001/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message": "最近有什么热门话题？"}'
+```
+
+详细文档请参考 `agent_service/README.md`
+
 ## 技术栈
 
 - **browser-use** - 基于 LLM 的浏览器自动化框架
 - **langchain-openai** - LangChain OpenAI 集成
 - **openai** - OpenAI Python 客户端
 - **playwright** - 底层浏览器自动化引擎
+- **supabase** - 云端数据库（可选）
+- **Vercel AI SDK** - AI 问答助理（可选）

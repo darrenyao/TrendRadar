@@ -9,3 +9,6 @@ browser-use>=0.1.0        # 浏览器自动化抓取
 langchain-openai>=0.1.0   # LangChain OpenAI 集成（browser-use 依赖）
 openai>=1.0.0             # OpenAI 兼容 API 客户端
 playwright>=1.40.0        # 浏览器自动化引擎
+
+# Supabase 存储依赖（可选）
+supabase>=2.0.0           # Supabase Python 客户端

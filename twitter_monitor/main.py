@@ -26,6 +26,14 @@ from .analyzer import PostAnalyzer, AnalysisResult
 from .storage import TwitterStorage
 from .scheduler import TwitterScheduler, PushPeriod
 
+# Supabase 存储（可选）
+try:
+    from .supabase_storage import SupabaseStorage, get_supabase_storage
+    SUPABASE_AVAILABLE = True
+except ImportError:
+    SUPABASE_AVAILABLE = False
+    get_supabase_storage = None
+
 
 class TwitterMonitor:
     """
@@ -70,6 +78,15 @@ class TwitterMonitor:
 
         self.scraper = None  # 延迟初始化
         self.analyzer = None  # 延迟初始化
+
+        # Supabase 云端存储（可选）
+        self.supabase_storage = None
+        if SUPABASE_AVAILABLE and self.config.get("supabase_enabled", False):
+            try:
+                self.supabase_storage = get_supabase_storage()
+                print("[Twitter] Supabase 云端存储已启用")
+            except Exception as e:
+                print(f"[Twitter] Supabase 初始化失败: {e}")
 
         # 通知发送函数（从主程序导入）
         self._notification_sender = None
@@ -176,11 +193,20 @@ class TwitterMonitor:
 
         results = await scraper.scrape_multiple_users(users, max_posts)
 
-        # 保存到存储
+        # 保存到本地存储
+        all_posts = []
         for username, posts in results.items():
             if posts:
                 self.storage.save_posts(username, posts)
+                all_posts.extend(posts)
                 print(f"[Twitter] 保存 @{username} 的 {len(posts)} 条帖子")
+
+        # 同步到 Supabase 云端存储
+        if self.supabase_storage and all_posts:
+            try:
+                self.supabase_storage.save_posts(all_posts, generate_embeddings=True)
+            except Exception as e:
+                print(f"[Twitter] Supabase 同步失败: {e}")
 
         return results
 
@@ -215,6 +241,13 @@ class TwitterMonitor:
         result = analyzer.analyze_posts(posts)
 
         print(f"[Twitter] 分析完成，识别出 {len(result.clusters)} 个话题")
+
+        # 保存分析结果到 Supabase
+        if self.supabase_storage:
+            try:
+                self.supabase_storage.save_analysis(result, generate_embeddings=True)
+            except Exception as e:
+                print(f"[Twitter] Supabase 保存分析结果失败: {e}")
 
         return result
 

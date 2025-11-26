@@ -136,3 +136,26 @@ twitter_monitor:
     base_url: ""  # 留空则使用环境变量 TWITTER_LLM_BASE_URL
     api_key: ""   # 留空则使用环境变量 TWITTER_LLM_API_KEY
     model: ""     # 留空则使用环境变量 TWITTER_LLM_MODEL
+
+  # Supabase 云端存储配置
+  # 启用后可使用 AI 问答助理进行语义检索
+  supabase_enabled: false  # 是否启用 Supabase 存储
+
+# ============================================
+# Agent Service 配置（AI 问答助理）
+# ============================================
+# 基于 Vercel AI SDK 的智能问答服务
+# 用户收到推送后可以和 AI 助理进行对话
+
+agent_service:
+  # 是否启用 Agent Service
+  enabled: false
+
+  # 服务端口
+  port: 3001
+
+  # Agent 使用的模型
+  model: "gpt-4o"
+
+  # Embedding 模型
+  embedding_model: "text-embedding-3-small"
