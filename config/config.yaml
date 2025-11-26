@@ -99,3 +99,40 @@ platforms:
     name: "抖音"
   - id: "zhihu"
     name: "知乎"
+
+# ============================================
+# Twitter 监控配置
+# ============================================
+# 使用 browser-use 抓取 Twitter 帖子，并使用 LLM 进行聚类分析
+# 每天早中晚三次推送聚类总结
+
+twitter_monitor:
+  # 是否启用 Twitter 监控
+  enabled: false
+
+  # 要监控的 Twitter 用户列表（不含@符号）
+  # 示例用户：elonmusk, OpenAI, sama, AndrewYNg
+  users: []
+  # users:
+  #   - elonmusk
+  #   - OpenAI
+  #   - sama
+
+  # 每个用户最大抓取帖子数
+  max_posts_per_user: 20
+
+  # 数据保留天数
+  retention_days: 30
+
+  # 推送时间配置（北京时间）
+  push_schedule:
+    morning: "08:00"   # 早间推送
+    noon: "12:00"      # 午间推送
+    evening: "20:00"   # 晚间推送
+
+  # LLM 配置（用于浏览器自动化和聚类分析）
+  # 建议使用环境变量配置敏感信息
+  llm:
+    base_url: ""  # 留空则使用环境变量 TWITTER_LLM_BASE_URL
+    api_key: ""   # 留空则使用环境变量 TWITTER_LLM_API_KEY
+    model: ""     # 留空则使用环境变量 TWITTER_LLM_MODEL

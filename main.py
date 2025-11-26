@@ -4604,10 +4604,132 @@ class NewsAnalyzer:
             raise
 
 
+def run_twitter_monitor():
+    """运行 Twitter 监控（如果已启用）"""
+    import asyncio
+
+    # 检查是否启用
+    twitter_enabled = os.environ.get("TWITTER_MONITOR_ENABLED", "").strip().lower() in ("true", "1")
+
+    # 也检查配置文件
+    if not twitter_enabled:
+        try:
+            config_path = os.environ.get("CONFIG_PATH", "config/config.yaml")
+            with open(config_path, "r", encoding="utf-8") as f:
+                config_data = yaml.safe_load(f)
+                twitter_config = config_data.get("twitter_monitor", {})
+                twitter_enabled = twitter_config.get("enabled", False)
+        except Exception:
+            pass
+
+    if not twitter_enabled:
+        return
+
+    # 检查必要的依赖
+    try:
+        from twitter_monitor import TwitterMonitor
+    except ImportError as e:
+        print(f"[Twitter] 监控模块加载失败: {e}")
+        print("[Twitter] 请安装依赖: pip install browser-use langchain-openai openai playwright")
+        return
+
+    # 检查必要的配置
+    if not os.environ.get("TWITTER_LLM_API_KEY"):
+        print("[Twitter] 未配置 LLM API Key，跳过 Twitter 监控")
+        return
+
+    users = os.environ.get("TWITTER_MONITOR_USERS", "").strip()
+    if not users:
+        # 从配置文件读取
+        try:
+            config_path = os.environ.get("CONFIG_PATH", "config/config.yaml")
+            with open(config_path, "r", encoding="utf-8") as f:
+                config_data = yaml.safe_load(f)
+                twitter_config = config_data.get("twitter_monitor", {})
+                users = twitter_config.get("users", [])
+        except Exception:
+            users = []
+
+    if not users:
+        print("[Twitter] 未配置监控用户，跳过 Twitter 监控")
+        return
+
+    print("\n" + "=" * 50)
+    print("Twitter 监控")
+    print("=" * 50)
+
+    try:
+        monitor = TwitterMonitor()
+
+        # 设置通知发送函数
+        def send_notification(message):
+            """发送通知到所有配置的渠道"""
+            success = False
+
+            # 钉钉
+            if os.environ.get("DINGTALK_WEBHOOK_URL"):
+                try:
+                    success = send_to_dingtalk(message) or success
+                except Exception as e:
+                    print(f"[Twitter] 钉钉推送失败: {e}")
+
+            # 飞书
+            if os.environ.get("FEISHU_WEBHOOK_URL"):
+                try:
+                    success = send_to_feishu(message) or success
+                except Exception as e:
+                    print(f"[Twitter] 飞书推送失败: {e}")
+
+            # 企业微信
+            if os.environ.get("WEWORK_WEBHOOK_URL"):
+                try:
+                    success = send_to_wework(message) or success
+                except Exception as e:
+                    print(f"[Twitter] 企业微信推送失败: {e}")
+
+            # Telegram
+            if os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID"):
+                try:
+                    success = send_to_telegram(message) or success
+                except Exception as e:
+                    print(f"[Twitter] Telegram推送失败: {e}")
+
+            # 邮件
+            if os.environ.get("EMAIL_FROM") and os.environ.get("EMAIL_TO"):
+                try:
+                    success = send_to_email("Twitter 动态", message) or success
+                except Exception as e:
+                    print(f"[Twitter] 邮件推送失败: {e}")
+
+            # ntfy
+            if os.environ.get("NTFY_TOPIC"):
+                try:
+                    success = send_to_ntfy(message) or success
+                except Exception as e:
+                    print(f"[Twitter] ntfy推送失败: {e}")
+
+            return success
+
+        monitor.set_notification_sender(send_notification)
+
+        # 运行监控
+        asyncio.run(monitor.run())
+
+    except Exception as e:
+        print(f"[Twitter] 监控运行失败: {e}")
+        import traceback
+        traceback.print_exc()
+
+
 def main():
     try:
+        # 运行新闻分析
         analyzer = NewsAnalyzer()
         analyzer.run()
+
+        # 运行 Twitter 监控
+        run_twitter_monitor()
+
     except FileNotFoundError as e:
         print(f"❌ 配置文件错误: {e}")
         print("\n请确保以下文件存在:")
