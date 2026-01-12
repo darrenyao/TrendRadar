@@ -1,0 +1,6 @@
+dingtalk-stream>=1.0.0
+alibabacloud-dingtalk>=2.0.0
+alibabacloud-tea-openapi>=0.3.0
+alibabacloud-tea-util>=0.3.0
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
