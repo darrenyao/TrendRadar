@@ -1,0 +1,130 @@
+# Creativity Pipeline Configuration
+# Version: 1.0.0
+
+# ==================== Pipeline Settings ====================
+pipeline:
+  # Vault path (can be overridden by VAULT_PATH env var)
+  vault_path: /vault
+
+  # Daily cards target
+  daily_cards_count: 10
+
+  # Top ideas to present
+  top_ideas_count: 3
+
+  # WIP limit (only 1 active experiment at a time)
+  wip_limit: 1
+
+  # Evidence timeout in hours before auto-downgrade
+  evidence_timeout_hours: 24
+
+# ==================== Schedule ====================
+schedule:
+  # Morning push time (HH:MM)
+  morning: "09:00"
+
+  # Afternoon push time
+  afternoon: "14:00"
+
+  # Evening push time
+  evening: "21:30"
+
+  # Timezone
+  timezone: Asia/Shanghai
+
+# ==================== Data Sources ====================
+data_sources:
+  # NewsNow API base URL
+  api_base: https://newsnow.busiyi.world/api/s
+
+  # Request interval in milliseconds
+  request_interval_ms: 100
+
+  # Industries to monitor
+  industries:
+    - tech/ai
+    - finance
+    - social
+
+  # Optional proxy URL
+  proxy_url: null
+
+# ==================== DingTalk ====================
+dingtalk:
+  # Enable DingTalk notifications
+  enabled: true
+
+  # Streaming mode (recommended)
+  streaming: true
+
+  # Message templates are in config/templates/
+
+# ==================== AI/Agent Settings ====================
+agent:
+  # Default model for agents
+  model: claude-sonnet-4-20250514
+
+  # Max tokens for responses
+  max_tokens: 4096
+
+  # Temperature
+  temperature: 0.7
+
+  # Retry settings
+  max_retries: 3
+  retry_delay_seconds: 5
+
+# ==================== Scoring Weights ====================
+scoring:
+  # Idea scoring weights (must sum to 100)
+  weights:
+    feasibility: 30
+    market: 25
+    personal_fit: 25
+    uniqueness: 20
+
+  # Minimum scores for Top 3 selection
+  min_scores:
+    total: 20
+    feasibility: 5
+
+# ==================== Card Categories ====================
+categories:
+  change:
+    name: 变化
+    description: 市场、技术或行为的明显变化
+
+  pain_point:
+    name: 痛点
+    description: 用户遇到的具体问题或困难
+
+  opportunity:
+    name: 机会
+    description: 潜在的商业或产品机会
+
+# ==================== Downgrade Settings ====================
+downgrade:
+  # Default lite task time in minutes
+  lite_time: 5
+
+  # Default lite tasks
+  lite_options:
+    - task: 发1条社交媒体询问
+      evidence: 截图显示帖子已发布
+
+    - task: 用AI生成1张概念图
+      evidence: 上传生成的概念图
+
+    - task: 给1个潜在用户发消息
+      evidence: 截图显示对话
+
+    - task: 做1个简单投票
+      evidence: 投票链接和初始结果截图
+
+# ==================== Archive Settings ====================
+archive:
+  # Days to keep items before archiving
+  archive_after_days: 7
+
+  # Clean up archived items older than
+  cleanup_after_days: 30

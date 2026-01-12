@@ -54,6 +54,8 @@ class PipelineCallbackHandler(GraphHandler):
                 "downgrade": self._handle_downgrade,
                 "skip": self._handle_skip,
                 "evidence": self._handle_evidence,
+                "more": self._handle_more,
+                "refresh": self._handle_refresh,
             }
 
             handler = handlers.get(selection["type"], self._handle_unknown)
@@ -82,6 +84,8 @@ class PipelineCallbackHandler(GraphHandler):
             "开始": "start", "start": "start",
             "降级": "downgrade", "lite": "downgrade", "简单模式": "downgrade",
             "跳过": "skip", "skip": "skip",
+            "更多": "more", "全部": "more", "查看更多": "more",
+            "刷新": "refresh",
         }
 
         for kw, action in keywords.items():
@@ -115,17 +119,97 @@ class PipelineCallbackHandler(GraphHandler):
             if self.state_machine:
                 indices = value if isinstance(value, list) else [value]
                 selected = self.state_machine.record_selection(indices)
-                if self.dingtalk_service:
-                    if selected:
-                        await self.dingtalk_service.send_confirmation(f"已选择: {value}")
-                    else:
-                        await self.dingtalk_service.send_message("选择无效，请检查序号是否正确")
-            elif self.dingtalk_service:
-                await self.dingtalk_service.send_confirmation(f"已选择: {value}")
+
+                if not selected:
+                    if self.dingtalk_service and context.conversation_token:
+                        await self.dingtalk_service.reply_to_message(
+                            context.conversation_token, "选择无效，请检查序号是否正确"
+                        )
+                    return
+
+                # 构建选中素材的摘要
+                selected_titles = [c.get("title", "未命名")[:20] for c in selected]
+                titles_str = "、".join(selected_titles)
+
+                # 发送确认消息
+                if self.dingtalk_service and context.conversation_token:
+                    await self.dingtalk_service.reply_to_message(
+                        context.conversation_token,
+                        f"✅ 已选择 {len(selected)} 条素材：{titles_str}\n\n⏳ 正在基于素材生成创意方案..."
+                    )
+
+                # 触发创意生成
+                if self.agents and "idea_factory" in self.agents:
+                    logger.info("触发 IdeaFactoryAgent 生成创意...")
+                    try:
+                        card_ids = [c.get("id") for c in selected if c.get("id")]
+                        idea_ids = await self.agents["idea_factory"].generate_ideas(card_ids, count=3)
+                        logger.info(f"生成了 {len(idea_ids)} 个创意: {idea_ids}")
+
+                        # 标记为 top3
+                        if idea_ids:
+                            self.state_machine.set_top3(idea_ids)
+
+                        # 获取并发送生成的创意
+                        top3_ideas = self.state_machine.get_top3_ideas()
+                        if top3_ideas and self.dingtalk_service:
+                            await self._send_generated_ideas(context, top3_ideas)
+                        elif self.dingtalk_service and context.conversation_token:
+                            await self.dingtalk_service.reply_to_message(
+                                context.conversation_token,
+                                "创意生成完成，但没有找到合适的创意。请尝试选择其他素材。"
+                            )
+                    except Exception as e:
+                        logger.error(f"创意生成失败: {e}", exc_info=True)
+                        if self.dingtalk_service and context.conversation_token:
+                            await self.dingtalk_service.reply_error(
+                                context.conversation_token, f"创意生成失败: {e}"
+                            )
+                else:
+                    # 没有 Agent 时，提示用户下一步
+                    if self.dingtalk_service and context.conversation_token:
+                        await self.dingtalk_service.reply_to_message(
+                            context.conversation_token,
+                            f"✅ 素材已选择\n\n下一步：等待明日早间推送，系统将基于所选素材生成创意方案。"
+                        )
+
+            elif self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_confirmation(
+                    context.conversation_token, f"已选择: {value}"
+                )
         except Exception as e:
             logger.error(f"处理选择时出错: {e}", exc_info=True)
-            if self.dingtalk_service:
-                await self.dingtalk_service.send_message(f"选择处理失败: {e}")
+            if self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_error(
+                    context.conversation_token, f"选择处理失败: {e}"
+                )
+
+    async def _send_generated_ideas(self, context: MessageContext, ideas: list):
+        """发送生成的创意给用户"""
+        if not self.dingtalk_service:
+            return
+
+        sections = ["# 🎯 为您生成了 Top 3 创意"]
+
+        for i, idea in enumerate(ideas[:3], 1):
+            title = idea.get("title", "未命名")
+            one_liner = idea.get("one_liner", "")
+            target_user = idea.get("target_user", "")
+            mvp_time = idea.get("mvp_time", 30)
+
+            idea_block = [
+                f"## {i}️⃣ {title}",
+                f"> {one_liner}" if one_liner else "",
+                f"**目标用户**: {target_user}" if target_user else "",
+                f"**验证时间**: {mvp_time}分钟",
+            ]
+            sections.append("\n".join(line for line in idea_block if line))
+
+        sections.append("---")
+        sections.append("💡 **回复 1/2/3 选择要验证的创意**")
+
+        content = "\n\n".join(sections)
+        await self.dingtalk_service.send_message(content)
 
     async def _handle_confirm(self, context: MessageContext, value):
         logger.info(f"用户 {context.user_name} 确认了选择")
@@ -133,23 +217,35 @@ class PipelineCallbackHandler(GraphHandler):
             if self.state_machine:
                 idea = self.state_machine.confirm_top1()
                 if not idea:
-                    if self.dingtalk_service:
-                        await self.dingtalk_service.send_message("没有找到可确认的创意，请先选择一个创意")
+                    if self.dingtalk_service and context.conversation_token:
+                        await self.dingtalk_service.reply_to_message(
+                            context.conversation_token,
+                            "没有找到可确认的创意，请先选择一个创意"
+                        )
                     return
                 if self.agents and "mvp_runner" in self.agents:
                     tasks = await self.agents["mvp_runner"].generate_tasks(idea)
                     self.state_machine.create_experiment(idea, tasks)
-                    if self.dingtalk_service:
-                        await self.dingtalk_service.send_confirmation("已确认，任务包已生成")
+                    if self.dingtalk_service and context.conversation_token:
+                        await self.dingtalk_service.reply_confirmation(
+                            context.conversation_token, "已确认，任务包已生成"
+                        )
                 else:
-                    if self.dingtalk_service:
-                        await self.dingtalk_service.send_confirmation(f"已确认创意: {idea.get('title', '未命名')}")
-            elif self.dingtalk_service:
-                await self.dingtalk_service.send_confirmation("已确认")
+                    if self.dingtalk_service and context.conversation_token:
+                        await self.dingtalk_service.reply_confirmation(
+                            context.conversation_token,
+                            f"已确认创意: {idea.get('title', '未命名')}"
+                        )
+            elif self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_confirmation(
+                    context.conversation_token, "已确认"
+                )
         except Exception as e:
             logger.error(f"确认操作失败: {e}", exc_info=True)
-            if self.dingtalk_service:
-                await self.dingtalk_service.send_message(f"确认操作失败: {e}")
+            if self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_error(
+                    context.conversation_token, f"确认操作失败: {e}"
+                )
 
     async def _handle_start(self, context: MessageContext, value):
         logger.info(f"用户 {context.user_name} 开始实验")
@@ -158,29 +254,41 @@ class PipelineCallbackHandler(GraphHandler):
                 exp = self.state_machine.get_active_experiment()
                 if exp:
                     self.state_machine.update_status(exp.get("id"), "in_progress")
-            if self.dingtalk_service:
-                await self.dingtalk_service.send_confirmation("实验已开始，加油！")
+            if self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_confirmation(
+                    context.conversation_token, "实验已开始，加油！"
+                )
         except Exception as e:
             logger.error(f"开始实验失败: {e}", exc_info=True)
-            if self.dingtalk_service:
-                await self.dingtalk_service.send_message(f"开始实验失败: {e}")
+            if self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_error(
+                    context.conversation_token, f"开始实验失败: {e}"
+                )
 
     async def _handle_downgrade(self, context: MessageContext, value):
         logger.info(f"用户 {context.user_name} 请求降级")
         try:
             if self.state_machine:
                 result = self.state_machine.trigger_downgrade()
-                if self.dingtalk_service:
+                if self.dingtalk_service and context.conversation_token:
                     if result:
-                        await self.dingtalk_service.send_confirmation("已切换到简单模式")
+                        await self.dingtalk_service.reply_confirmation(
+                            context.conversation_token, "已切换到简单模式"
+                        )
                     else:
-                        await self.dingtalk_service.send_message("当前没有可降级的实验")
-            elif self.dingtalk_service:
-                await self.dingtalk_service.send_confirmation("已切换到简单模式")
+                        await self.dingtalk_service.reply_to_message(
+                            context.conversation_token, "当前没有可降级的实验"
+                        )
+            elif self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_confirmation(
+                    context.conversation_token, "已切换到简单模式"
+                )
         except Exception as e:
             logger.error(f"降级操作失败: {e}", exc_info=True)
-            if self.dingtalk_service:
-                await self.dingtalk_service.send_message(f"降级操作失败: {e}")
+            if self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_error(
+                    context.conversation_token, f"降级操作失败: {e}"
+                )
 
     async def _handle_skip(self, context: MessageContext, value):
         logger.info(f"用户 {context.user_name} 跳过当前任务")
@@ -189,35 +297,110 @@ class PipelineCallbackHandler(GraphHandler):
                 exp = self.state_machine.get_active_experiment()
                 if exp:
                     self.state_machine.update_status(exp.get("id"), "skipped")
-            if self.dingtalk_service:
-                await self.dingtalk_service.send_confirmation("已跳过，明天继续")
+            if self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_confirmation(
+                    context.conversation_token, "已跳过，明天继续"
+                )
         except Exception as e:
             logger.error(f"跳过操作失败: {e}", exc_info=True)
-            if self.dingtalk_service:
-                await self.dingtalk_service.send_message(f"跳过操作失败: {e}")
+            if self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_error(
+                    context.conversation_token, f"跳过操作失败: {e}"
+                )
 
     async def _handle_evidence(self, context: MessageContext, value):
         logger.info(f"用户 {context.user_name} 提交证据: {value[:50]}...")
         try:
             if self.state_machine:
                 result = self.state_machine.record_evidence(value)
-                if self.dingtalk_service:
+                if self.dingtalk_service and context.conversation_token:
                     if result:
-                        await self.dingtalk_service.send_confirmation("证据已记录，感谢提交！")
+                        await self.dingtalk_service.reply_confirmation(
+                            context.conversation_token, "证据已记录，感谢提交！"
+                        )
                     else:
-                        await self.dingtalk_service.send_message("当前没有进行中的实验，无法记录证据")
-            elif self.dingtalk_service:
-                await self.dingtalk_service.send_confirmation("证据已记录")
+                        await self.dingtalk_service.reply_to_message(
+                            context.conversation_token,
+                            "当前没有进行中的实验，无法记录证据"
+                        )
+            elif self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_confirmation(
+                    context.conversation_token, "证据已记录"
+                )
         except Exception as e:
             logger.error(f"记录证据失败: {e}", exc_info=True)
-            if self.dingtalk_service:
-                await self.dingtalk_service.send_message(f"记录证据失败: {e}")
+            if self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_error(
+                    context.conversation_token, f"记录证据失败: {e}"
+                )
+
+    async def _handle_more(self, context: MessageContext, value):
+        """显示所有素材卡片"""
+        logger.info(f"用户 {context.user_name} 请求查看更多")
+        try:
+            if self.state_machine:
+                cards = self.state_machine.get_pending_cards()
+
+                if not cards:
+                    if self.dingtalk_service and context.conversation_token:
+                        await self.dingtalk_service.reply_to_message(
+                            context.conversation_token, "当前没有可用的素材卡片"
+                        )
+                    return
+
+                # 分批显示，每次最多10条
+                sections = [f"# 📋 全部素材列表（共 {len(cards)} 条）"]
+
+                for i, card in enumerate(cards, 1):
+                    title = card.get("title", "未命名")
+                    source = card.get("source") or card.get("source_platform", "")
+                    if len(source) > 15:
+                        source = source[:15] + "..."
+
+                    card_line = f"**{i}.** {title}"
+                    if source:
+                        card_line += f" `{source}`"
+                    sections.append(card_line)
+
+                sections.append("---")
+                sections.append("💡 回复数字选择（如 `1` 或 `1,2,3`）")
+
+                content = "\n\n".join(sections)
+
+                if self.dingtalk_service:
+                    await self.dingtalk_service.send_message(content)
+
+        except Exception as e:
+            logger.error(f"查看更多失败: {e}", exc_info=True)
+            if self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_error(
+                    context.conversation_token, f"查看更多失败: {e}"
+                )
+
+    async def _handle_refresh(self, context: MessageContext, value):
+        """刷新数据"""
+        logger.info(f"用户 {context.user_name} 请求刷新")
+        try:
+            if self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_to_message(
+                    context.conversation_token,
+                    "⏳ 正在刷新数据...\n\n刷新功能需要一些时间，请稍后查看新的推送消息。"
+                )
+            # TODO: 触发重新抓取数据
+            # 这里可以调用 morning_push 的部分逻辑
+        except Exception as e:
+            logger.error(f"刷新失败: {e}", exc_info=True)
+            if self.dingtalk_service and context.conversation_token:
+                await self.dingtalk_service.reply_error(
+                    context.conversation_token, f"刷新失败: {e}"
+                )
 
     async def _handle_unknown(self, context: MessageContext, value):
         logger.warning(f"未知输入: {value}")
-        if self.dingtalk_service:
-            await self.dingtalk_service.send_message(
-                "抱歉，我没有理解您的意思。请回复数字选择，或使用关键词（确认/降级/跳过）"
+        if self.dingtalk_service and context.conversation_token:
+            await self.dingtalk_service.reply_to_message(
+                context.conversation_token,
+                "抱歉，我没有理解您的意思。\n\n可用命令：\n- 回复数字选择素材（如 `1` 或 `1,2,3`）\n- 回复「更多」查看全部列表\n- 回复「确认/降级/跳过」"
             )
 
     async def raw_process(self, callback: CallbackMessage):

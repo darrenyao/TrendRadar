@@ -1,0 +1,4461 @@
+{
+  "fetch_time": "2026-01-12T16:25:49.278069",
+  "fetch_date": "2026-01-12",
+  "time_slot": "morning",
+  "total_items": 100,
+  "statistics": {
+    "by_industry": {
+      "unknown": 100
+    },
+    "by_source": {
+      "weibo": 6,
+      "douyin": 10,
+      "baidu": 10,
+      "toutiao": 8,
+      "bilibili-hot-search": 8,
+      "36kr": 7,
+      "wallstreetcn-hot": 7,
+      "v2ex": 6,
+      "hackernews": 5,
+      "producthunt": 5,
+      "github-trending-today": 5,
+      "sspai": 5,
+      "twitter": 4,
+      "cls-hot": 5,
+      "xueqiu": 5,
+      "xiaohongshu": 3,
+      "zhihu": 1
+    },
+    "cross_platform_count": 0,
+    "cross_platform_topics": [],
+    "top_items": [
+      {
+        "title": "AI编程助手",
+        "heat_score": 15800,
+        "source": "weibo"
+      },
+      {
+        "title": "美联储主席鲍威尔遭刑事调查",
+        "heat_score": 15000,
+        "source": "douyin"
+      },
+      {
+        "title": "合川文旅刨猪汤现场发门票",
+        "heat_score": 14250,
+        "source": "douyin"
+      },
+      {
+        "title": "阿房宫考古大突破：确认宫殿选址于水",
+        "heat_score": 14000,
+        "source": "baidu"
+      },
+      {
+        "title": "加快培育服务消费新增长点",
+        "heat_score": 13500,
+        "source": "douyin"
+      },
+      {
+        "title": "网购一箱粑粑柑结果开出百种丑法",
+        "heat_score": 13300,
+        "source": "baidu"
+      },
+      {
+        "title": "创业公司裁员",
+        "heat_score": 13200,
+        "source": "weibo"
+      },
+      {
+        "title": "百大厨神集合做年饭了",
+        "heat_score": 12750,
+        "source": "douyin"
+      },
+      {
+        "title": "算算咱家的柴米油盐账",
+        "heat_score": 12599,
+        "source": "baidu"
+      },
+      {
+        "title": "当我在欧洲半夜饿了",
+        "heat_score": 12000,
+        "source": "douyin"
+      }
+    ],
+    "total_heat": 972458,
+    "by_priority": {
+      "critical": 98,
+      "high": 2,
+      "medium": 0,
+      "low": 0
+    },
+    "priority_top_items": [
+      {
+        "title": "The struggle of resizing windows on macOS Tahoe",
+        "score": 179.4,
+        "level": "critical"
+      },
+      {
+        "title": "PlanEat AI",
+        "score": 179.4,
+        "level": "critical"
+      },
+      {
+        "title": "CLI agents make self-hosting on a home server easi",
+        "score": 171.3,
+        "level": "critical"
+      },
+      {
+        "title": "Loki.Build",
+        "score": 171.3,
+        "level": "critical"
+      },
+      {
+        "title": "恒指收涨1.44%，恒生科技指数涨3.1%",
+        "score": 167.4,
+        "level": "critical"
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "news-2026-01-12-001",
+      "title": "AI编程助手",
+      "url": "https://s.weibo.com/weibo?q=AI编程助手",
+      "mobile_url": "",
+      "source_platform": "weibo",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 15800,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "weibo"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "AI编程助手",
+        "url": "https://s.weibo.com/weibo?q=AI编程助手",
+        "source_platform": "weibo",
+        "source_type": "tikhub",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "hot_value": 1580000
+        },
+        "rank": 1,
+        "heat_score": 15800,
+        "tags": [
+          "热"
+        ]
+      },
+      "priority": {
+        "total_score": 119.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-002",
+      "title": "美联储主席鲍威尔遭刑事调查",
+      "url": "https://www.douyin.com/hot/2364900",
+      "mobile_url": "",
+      "source_platform": "douyin",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 15000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "douyin"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "美联储主席鲍威尔遭刑事调查",
+        "url": "https://www.douyin.com/hot/2364900",
+        "source_platform": "douyin",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 15000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 107.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-003",
+      "title": "合川文旅刨猪汤现场发门票",
+      "url": "https://www.douyin.com/hot/2365074",
+      "mobile_url": "",
+      "source_platform": "douyin",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 14250,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "douyin"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "合川文旅刨猪汤现场发门票",
+        "url": "https://www.douyin.com/hot/2365074",
+        "source_platform": "douyin",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 14250,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 107.3,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-004",
+      "title": "阿房宫考古大突破：确认宫殿选址于水",
+      "url": "https://www.baidu.com/s?wd=%E9%98%BF%E6%88%BF%E5%AE%AB%E8%80%83%E5%8F%A4%E5%A4%A7%E7%AA%81%E7%A0%B4%EF%BC%9A%E7%A1%AE%E8%AE%A4%E5%AE%AB%E6%AE%BF%E9%80%89%E5%9D%80%E4%BA%8E%E6%B0%B4",
+      "mobile_url": "",
+      "source_platform": "baidu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 14000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "baidu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "阿房宫考古大突破：确认宫殿选址于水",
+        "url": "https://www.baidu.com/s?wd=%E9%98%BF%E6%88%BF%E5%AE%AB%E8%80%83%E5%8F%A4%E5%A4%A7%E7%AA%81%E7%A0%B4%EF%BC%9A%E7%A1%AE%E8%AE%A4%E5%AE%AB%E6%AE%BF%E9%80%89%E5%9D%80%E4%BA%8E%E6%B0%B4",
+        "source_platform": "baidu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 14000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 107.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-005",
+      "title": "加快培育服务消费新增长点",
+      "url": "https://www.douyin.com/hot/2365204",
+      "mobile_url": "",
+      "source_platform": "douyin",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 13500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "douyin"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "加快培育服务消费新增长点",
+        "url": "https://www.douyin.com/hot/2365204",
+        "source_platform": "douyin",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 13500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 106.9,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-006",
+      "title": "网购一箱粑粑柑结果开出百种丑法",
+      "url": "https://www.baidu.com/s?wd=%E7%BD%91%E8%B4%AD%E4%B8%80%E7%AE%B1%E7%B2%91%E7%B2%91%E6%9F%91%E7%BB%93%E6%9E%9C%E5%BC%80%E5%87%BA%E7%99%BE%E7%A7%8D%E4%B8%91%E6%B3%95",
+      "mobile_url": "",
+      "source_platform": "baidu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 13300,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "baidu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "网购一箱粑粑柑结果开出百种丑法",
+        "url": "https://www.baidu.com/s?wd=%E7%BD%91%E8%B4%AD%E4%B8%80%E7%AE%B1%E7%B2%91%E7%B2%91%E6%9F%91%E7%BB%93%E6%9E%9C%E5%BC%80%E5%87%BA%E7%99%BE%E7%A7%8D%E4%B8%91%E6%B3%95",
+        "source_platform": "baidu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 13300,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 107.3,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-007",
+      "title": "创业公司裁员",
+      "url": "https://s.weibo.com/weibo?q=创业公司裁员",
+      "mobile_url": "",
+      "source_platform": "weibo",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 13200,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "weibo"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "创业公司裁员",
+        "url": "https://s.weibo.com/weibo?q=创业公司裁员",
+        "source_platform": "weibo",
+        "source_type": "tikhub",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "hot_value": 1320000
+        },
+        "rank": 2,
+        "heat_score": 13200,
+        "tags": [
+          "新"
+        ]
+      },
+      "priority": {
+        "total_score": 119.2,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-008",
+      "title": "百大厨神集合做年饭了",
+      "url": "https://www.douyin.com/hot/2365048",
+      "mobile_url": "",
+      "source_platform": "douyin",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 12750,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "douyin"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "百大厨神集合做年饭了",
+        "url": "https://www.douyin.com/hot/2365048",
+        "source_platform": "douyin",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 12750,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 106.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-009",
+      "title": "算算咱家的柴米油盐账",
+      "url": "https://www.baidu.com/s?wd=%E7%AE%97%E7%AE%97%E5%92%B1%E5%AE%B6%E7%9A%84%E6%9F%B4%E7%B1%B3%E6%B2%B9%E7%9B%90%E8%B4%A6",
+      "mobile_url": "",
+      "source_platform": "baidu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 12599,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "baidu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "算算咱家的柴米油盐账",
+        "url": "https://www.baidu.com/s?wd=%E7%AE%97%E7%AE%97%E5%92%B1%E5%AE%B6%E7%9A%84%E6%9F%B4%E7%B1%B3%E6%B2%B9%E7%9B%90%E8%B4%A6",
+        "source_platform": "baidu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 12599,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 106.9,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-010",
+      "title": "当我在欧洲半夜饿了",
+      "url": "https://www.douyin.com/hot/2364955",
+      "mobile_url": "",
+      "source_platform": "douyin",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 12000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "douyin"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "当我在欧洲半夜饿了",
+        "url": "https://www.douyin.com/hot/2364955",
+        "source_platform": "douyin",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 12000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 106.2,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-011",
+      "title": "两市成交额3.6万亿 三大指数涨超1%",
+      "url": "https://www.toutiao.com/trending/7594318597078486534/",
+      "mobile_url": "",
+      "source_platform": "toutiao",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 12000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "toutiao"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "两市成交额3.6万亿 三大指数涨超1%",
+        "url": "https://www.toutiao.com/trending/7594318597078486534/",
+        "source_platform": "toutiao",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 12000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 119.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-012",
+      "title": "Donk年度集锦",
+      "url": "https://search.bilibili.com/all?keyword=Donk%E5%B9%B4%E5%BA%A6%E9%9B%86%E9%94%A6",
+      "mobile_url": "",
+      "source_platform": "bilibili-hot-search",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 12000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "bilibili-hot-search"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "Donk年度集锦",
+        "url": "https://search.bilibili.com/all?keyword=Donk%E5%B9%B4%E5%BA%A6%E9%9B%86%E9%94%A6",
+        "source_platform": "bilibili-hot-search",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 12000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 119.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-013",
+      "title": "官方确认歼10CE击落多架战机战果",
+      "url": "https://www.baidu.com/s?wd=%E5%AE%98%E6%96%B9%E7%A1%AE%E8%AE%A4%E6%AD%BC10CE%E5%87%BB%E8%90%BD%E5%A4%9A%E6%9E%B6%E6%88%98%E6%9C%BA%E6%88%98%E6%9E%9C",
+      "mobile_url": "",
+      "source_platform": "baidu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 11899,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "baidu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "官方确认歼10CE击落多架战机战果",
+        "url": "https://www.baidu.com/s?wd=%E5%AE%98%E6%96%B9%E7%A1%AE%E8%AE%A4%E6%AD%BC10CE%E5%87%BB%E8%90%BD%E5%A4%9A%E6%9E%B6%E6%88%98%E6%9C%BA%E6%88%98%E6%9E%9C",
+        "source_platform": "baidu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 11899,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 106.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-014",
+      "title": "远程办公政策",
+      "url": "https://s.weibo.com/weibo?q=远程办公政策",
+      "mobile_url": "",
+      "source_platform": "weibo",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 11500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "weibo"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "远程办公政策",
+        "url": "https://s.weibo.com/weibo?q=远程办公政策",
+        "source_platform": "weibo",
+        "source_type": "tikhub",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "hot_value": 1150000
+        },
+        "rank": 3,
+        "heat_score": 11500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 118.8,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-015",
+      "title": "“按年猪”为何会引发网络狂欢",
+      "url": "https://www.toutiao.com/trending/7594036907739250734/",
+      "mobile_url": "",
+      "source_platform": "toutiao",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 11400,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "toutiao"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "“按年猪”为何会引发网络狂欢",
+        "url": "https://www.toutiao.com/trending/7594036907739250734/",
+        "source_platform": "toutiao",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 11400,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 119.2,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-016",
+      "title": "美联储主席回应遭刑事调查",
+      "url": "https://search.bilibili.com/all?keyword=%E7%BE%8E%E8%81%94%E5%82%A8%E4%B8%BB%E5%B8%AD%E5%9B%9E%E5%BA%94%E9%81%AD%E5%88%91%E4%BA%8B%E8%B0%83%E6%9F%A5",
+      "mobile_url": "",
+      "source_platform": "bilibili-hot-search",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 11400,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "bilibili-hot-search"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "美联储主席回应遭刑事调查",
+        "url": "https://search.bilibili.com/all?keyword=%E7%BE%8E%E8%81%94%E5%82%A8%E4%B8%BB%E5%B8%AD%E5%9B%9E%E5%BA%94%E9%81%AD%E5%88%91%E4%BA%8B%E8%B0%83%E6%9F%A5",
+        "source_platform": "bilibili-hot-search",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 11400,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 119.2,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-017",
+      "title": "伊朗外长：局势完全可控",
+      "url": "https://www.douyin.com/hot/2365323",
+      "mobile_url": "",
+      "source_platform": "douyin",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 6,
+      "heat_score": 11250,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "douyin"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "伊朗外长：局势完全可控",
+        "url": "https://www.douyin.com/hot/2365323",
+        "source_platform": "douyin",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 6,
+        "heat_score": 11250,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 105.8,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 17.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-018",
+      "title": "俄外交部：“绑架”普京是痴人说梦",
+      "url": "https://www.baidu.com/s?wd=%E4%BF%84%E5%A4%96%E4%BA%A4%E9%83%A8%EF%BC%9A%E2%80%9C%E7%BB%91%E6%9E%B6%E2%80%9D%E6%99%AE%E4%BA%AC%E6%98%AF%E7%97%B4%E4%BA%BA%E8%AF%B4%E6%A2%A6",
+      "mobile_url": "",
+      "source_platform": "baidu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 11200,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "baidu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "俄外交部：“绑架”普京是痴人说梦",
+        "url": "https://www.baidu.com/s?wd=%E4%BF%84%E5%A4%96%E4%BA%A4%E9%83%A8%EF%BC%9A%E2%80%9C%E7%BB%91%E6%9E%B6%E2%80%9D%E6%99%AE%E4%BA%AC%E6%98%AF%E7%97%B4%E4%BA%BA%E8%AF%B4%E6%A2%A6",
+        "source_platform": "baidu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 11200,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 106.2,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-019",
+      "title": "恒指收涨1.44%，恒生科技指数涨3.1%",
+      "url": "https://www.36kr.com/newsflashes/3636158879695874",
+      "mobile_url": "",
+      "source_platform": "36kr",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 11000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "36kr"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "恒指收涨1.44%，恒生科技指数涨3.1%",
+        "url": "https://www.36kr.com/newsflashes/3636158879695874",
+        "source_platform": "36kr",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 11000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 167.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-020",
+      "title": "华尔街见闻早餐FM-Radio | 2026年1月12日",
+      "url": "https://wallstreetcn.com/articles/3763048",
+      "mobile_url": "",
+      "source_platform": "wallstreetcn-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 11000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "wallstreetcn-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "华尔街见闻早餐FM-Radio | 2026年1月12日",
+        "url": "https://wallstreetcn.com/articles/3763048",
+        "source_platform": "wallstreetcn-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 11000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 167.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-021",
+      "title": "推进乡村全面振兴",
+      "url": "https://www.toutiao.com/trending/7593495864749604883/",
+      "mobile_url": "",
+      "source_platform": "toutiao",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 10800,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "toutiao"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "推进乡村全面振兴",
+        "url": "https://www.toutiao.com/trending/7593495864749604883/",
+        "source_platform": "toutiao",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 10800,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 118.8,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-022",
+      "title": "千寻智能模型登顶全球榜单",
+      "url": "https://search.bilibili.com/all?keyword=%E5%8D%83%E5%AF%BB%E6%99%BA%E8%83%BD%E6%A8%A1%E5%9E%8B%E7%99%BB%E9%A1%B6%E5%85%A8%E7%90%83%E6%A6%9C%E5%8D%95",
+      "mobile_url": "",
+      "source_platform": "bilibili-hot-search",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 10800,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "bilibili-hot-search"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "千寻智能模型登顶全球榜单",
+        "url": "https://search.bilibili.com/all?keyword=%E5%8D%83%E5%AF%BB%E6%99%BA%E8%83%BD%E6%A8%A1%E5%9E%8B%E7%99%BB%E9%A1%B6%E5%85%A8%E7%90%83%E6%A6%9C%E5%8D%95",
+        "source_platform": "bilibili-hot-search",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 10800,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 118.8,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-023",
+      "title": "过年穿什么",
+      "url": "https://www.douyin.com/hot/2364280",
+      "mobile_url": "",
+      "source_platform": "douyin",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 7,
+      "heat_score": 10500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "douyin"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "过年穿什么",
+        "url": "https://www.douyin.com/hot/2364280",
+        "source_platform": "douyin",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 7,
+        "heat_score": 10500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 105.5,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 17.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-024",
+      "title": "贪官称世界真奇妙退休才知道",
+      "url": "https://www.baidu.com/s?wd=%E8%B4%AA%E5%AE%98%E7%A7%B0%E4%B8%96%E7%95%8C%E7%9C%9F%E5%A5%87%E5%A6%99%E9%80%80%E4%BC%91%E6%89%8D%E7%9F%A5%E9%81%93",
+      "mobile_url": "",
+      "source_platform": "baidu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 6,
+      "heat_score": 10500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "baidu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "贪官称世界真奇妙退休才知道",
+        "url": "https://www.baidu.com/s?wd=%E8%B4%AA%E5%AE%98%E7%A7%B0%E4%B8%96%E7%95%8C%E7%9C%9F%E5%A5%87%E5%A6%99%E9%80%80%E4%BC%91%E6%89%8D%E7%9F%A5%E9%81%93",
+        "source_platform": "baidu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 6,
+        "heat_score": 10500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 105.8,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 17.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-025",
+      "title": "汇丰资产管理部门获准在阿联酋设立分支机构",
+      "url": "https://www.36kr.com/newsflashes/3636148593411076",
+      "mobile_url": "",
+      "source_platform": "36kr",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 10450,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "36kr"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "汇丰资产管理部门获准在阿联酋设立分支机构",
+        "url": "https://www.36kr.com/newsflashes/3636148593411076",
+        "source_platform": "36kr",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 10450,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 166.9,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-026",
+      "title": "本周重磅日程：美国通胀、中国外贸数据，美股财报季正式开启，美高院关税裁决将出",
+      "url": "https://wallstreetcn.com/articles/3762924",
+      "mobile_url": "",
+      "source_platform": "wallstreetcn-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 10450,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "wallstreetcn-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "本周重磅日程：美国通胀、中国外贸数据，美股财报季正式开启，美高院关税裁决将出",
+        "url": "https://wallstreetcn.com/articles/3762924",
+        "source_platform": "wallstreetcn-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 10450,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 166.9,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-027",
+      "title": "糖尿病患者常吃大蒜或出现4种变化",
+      "url": "https://www.toutiao.com/trending/7593446927627845695/",
+      "mobile_url": "",
+      "source_platform": "toutiao",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 10200,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "toutiao"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "糖尿病患者常吃大蒜或出现4种变化",
+        "url": "https://www.toutiao.com/trending/7593446927627845695/",
+        "source_platform": "toutiao",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 10200,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 118.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-028",
+      "title": "英国青少年问题有多严重",
+      "url": "https://search.bilibili.com/all?keyword=%E8%8B%B1%E5%9B%BD%E9%9D%92%E5%B0%91%E5%B9%B4%E9%97%AE%E9%A2%98%E6%9C%89%E5%A4%9A%E4%B8%A5%E9%87%8D",
+      "mobile_url": "",
+      "source_platform": "bilibili-hot-search",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 10200,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "bilibili-hot-search"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "英国青少年问题有多严重",
+        "url": "https://search.bilibili.com/all?keyword=%E8%8B%B1%E5%9B%BD%E9%9D%92%E5%B0%91%E5%B9%B4%E9%97%AE%E9%A2%98%E6%9C%89%E5%A4%9A%E4%B8%A5%E9%87%8D",
+        "source_platform": "bilibili-hot-search",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 10200,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 118.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-029",
+      "title": "anki 初体验，个人想法：效率不高的样子。。。",
+      "url": "https://www.v2ex.com/t/1184930",
+      "mobile_url": "",
+      "source_platform": "v2ex",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 10000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "v2ex"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "anki 初体验，个人想法：效率不高的样子。。。",
+        "url": "https://www.v2ex.com/t/1184930",
+        "source_platform": "v2ex",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 10000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 143.5,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-030",
+      "title": "The struggle of resizing windows on macOS Tahoe",
+      "url": "https://news.ycombinator.com/item?id=46579864",
+      "mobile_url": "",
+      "source_platform": "hackernews",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 10000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "hackernews"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "The struggle of resizing windows on macOS Tahoe",
+        "url": "https://news.ycombinator.com/item?id=46579864",
+        "source_platform": "hackernews",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 10000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 179.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100.0,
+          "cross_platform": 0,
+          "source_weight": 1.5,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-031",
+      "title": "PlanEat AI",
+      "url": "https://www.producthunt.com/products/planeat-ai-2/launches/planeat-ai-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+newsnow+%28ID%3A+239216%29",
+      "mobile_url": "",
+      "source_platform": "producthunt",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 10000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "producthunt"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "PlanEat AI",
+        "url": "https://www.producthunt.com/products/planeat-ai-2/launches/planeat-ai-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+newsnow+%28ID%3A+239216%29",
+        "source_platform": "producthunt",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 10000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 179.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100.0,
+          "cross_platform": 0,
+          "source_weight": 1.5,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-032",
+      "title": "anomalyco /      opencode",
+      "url": "https://github.com/anomalyco/opencode",
+      "mobile_url": "",
+      "source_platform": "github-trending-today",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 10000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "github-trending-today"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "anomalyco /      opencode",
+        "url": "https://github.com/anomalyco/opencode",
+        "source_platform": "github-trending-today",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 10000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 155.5,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-033",
+      "title": "新玩意 232｜少数派的编辑们最近买了啥？",
+      "url": "https://sspai.com/post/105270",
+      "mobile_url": "",
+      "source_platform": "sspai",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 10000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "sspai"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "新玩意 232｜少数派的编辑们最近买了啥？",
+        "url": "https://sspai.com/post/105270",
+        "source_platform": "sspai",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 10000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 143.5,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-034",
+      "title": "#AI大模型",
+      "url": "https://twitter.com/search?q=#AI大模型",
+      "mobile_url": "",
+      "source_platform": "twitter",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 10000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "twitter"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "#AI大模型",
+        "url": "https://twitter.com/search?q=#AI大模型",
+        "source_platform": "twitter",
+        "source_type": "tikhub",
+        "content_type": "trending",
+        "content": "人工智能大模型技术突破",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "tweet_count": 125000
+        },
+        "rank": 1,
+        "heat_score": 10000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 155.5,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-035",
+      "title": "中国ETF史上最大分红方案推出，沪深300ETF华泰柏瑞将派现110亿，再创纪录",
+      "url": "https://www.cls.cn/detail/2254283",
+      "mobile_url": "",
+      "source_platform": "cls-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 10000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "cls-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "中国ETF史上最大分红方案推出，沪深300ETF华泰柏瑞将派现110亿，再创纪录",
+        "url": "https://www.cls.cn/detail/2254283",
+        "source_platform": "cls-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 10000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 155.5,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-036",
+      "title": "蓝色光标",
+      "url": "https://xueqiu.com/s/SZ300058",
+      "mobile_url": "",
+      "source_platform": "xueqiu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 10000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "xueqiu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "蓝色光标",
+        "url": "https://xueqiu.com/s/SZ300058",
+        "source_platform": "xueqiu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 1,
+        "heat_score": 10000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 155.5,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 100.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-037",
+      "title": "泰胜风能回应投资中科宇航和星河动力传闻：不属实",
+      "url": "https://www.36kr.com/newsflashes/3636147623576836",
+      "mobile_url": "",
+      "source_platform": "36kr",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 9900,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "36kr"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "泰胜风能回应投资中科宇航和星河动力传闻：不属实",
+        "url": "https://www.36kr.com/newsflashes/3636147623576836",
+        "source_platform": "36kr",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 9900,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 164.9,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 99.0,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-038",
+      "title": "伊朗局势微妙，鲍威尔被诉，金银再创新高，油价连续走高、美股期货下跌",
+      "url": "https://wallstreetcn.com/articles/3763053",
+      "mobile_url": "",
+      "source_platform": "wallstreetcn-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 9900,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "wallstreetcn-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "伊朗局势微妙，鲍威尔被诉，金银再创新高，油价连续走高、美股期货下跌",
+        "url": "https://wallstreetcn.com/articles/3763053",
+        "source_platform": "wallstreetcn-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 9900,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 164.9,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 99.0,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-039",
+      "title": "程序员35岁",
+      "url": "https://s.weibo.com/weibo?q=程序员35岁",
+      "mobile_url": "",
+      "source_platform": "weibo",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 9800,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "weibo"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "程序员35岁",
+        "url": "https://s.weibo.com/weibo?q=程序员35岁",
+        "source_platform": "weibo",
+        "source_type": "tikhub",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "hot_value": 980000
+        },
+        "rank": 4,
+        "heat_score": 9800,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 116.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 98.0,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-040",
+      "title": "不会杀猪网上求助 上千人驱车来帮忙",
+      "url": "https://www.baidu.com/s?wd=%E4%B8%8D%E4%BC%9A%E6%9D%80%E7%8C%AA%E7%BD%91%E4%B8%8A%E6%B1%82%E5%8A%A9+%E4%B8%8A%E5%8D%83%E4%BA%BA%E9%A9%B1%E8%BD%A6%E6%9D%A5%E5%B8%AE%E5%BF%99",
+      "mobile_url": "",
+      "source_platform": "baidu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 7,
+      "heat_score": 9800,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "baidu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "不会杀猪网上求助 上千人驱车来帮忙",
+        "url": "https://www.baidu.com/s?wd=%E4%B8%8D%E4%BC%9A%E6%9D%80%E7%8C%AA%E7%BD%91%E4%B8%8A%E6%B1%82%E5%8A%A9+%E4%B8%8A%E5%8D%83%E4%BA%BA%E9%A9%B1%E8%BD%A6%E6%9D%A5%E5%B8%AE%E5%BF%99",
+        "source_platform": "baidu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 7,
+        "heat_score": 9800,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 103.7,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 98.0,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 17.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-041",
+      "title": "一张照片让我觉得人间值得",
+      "url": "https://www.douyin.com/hot/2364106",
+      "mobile_url": "",
+      "source_platform": "douyin",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 8,
+      "heat_score": 9750,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "douyin"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "一张照片让我觉得人间值得",
+        "url": "https://www.douyin.com/hot/2364106",
+        "source_platform": "douyin",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 8,
+        "heat_score": 9750,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 102.9,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 97.5,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 16.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-042",
+      "title": "我国气温大范围回暖",
+      "url": "https://www.toutiao.com/trending/7594314637056360484/",
+      "mobile_url": "",
+      "source_platform": "toutiao",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 9600,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "toutiao"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "我国气温大范围回暖",
+        "url": "https://www.toutiao.com/trending/7594314637056360484/",
+        "source_platform": "toutiao",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 9600,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 114.0,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 96.0,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-043",
+      "title": "A股成交刷新纪录",
+      "url": "https://search.bilibili.com/all?keyword=A%E8%82%A1%E6%88%90%E4%BA%A4%E5%88%B7%E6%96%B0%E7%BA%AA%E5%BD%95",
+      "mobile_url": "",
+      "source_platform": "bilibili-hot-search",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 9600,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "bilibili-hot-search"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "A股成交刷新纪录",
+        "url": "https://search.bilibili.com/all?keyword=A%E8%82%A1%E6%88%90%E4%BA%A4%E5%88%B7%E6%96%B0%E7%BA%AA%E5%BD%95",
+        "source_platform": "bilibili-hot-search",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 9600,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 114.0,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 96.0,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-044",
+      "title": "分享自研 AI 宝宝跳舞工具： https://aibabydance.org/ - 上传照片 10 秒生成萌系舞蹈视频（求体验建议）",
+      "url": "https://www.v2ex.com/t/1184928",
+      "mobile_url": "",
+      "source_platform": "v2ex",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 9500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "v2ex"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "分享自研 AI 宝宝跳舞工具： https://aibabydance.org/ - 上传照片 10 秒生成萌系舞蹈视频（求体验建议）",
+        "url": "https://www.v2ex.com/t/1184928",
+        "source_platform": "v2ex",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 9500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 137.0,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 95.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-045",
+      "title": "CLI agents make self-hosting on a home server easier and fun",
+      "url": "https://news.ycombinator.com/item?id=46580326",
+      "mobile_url": "",
+      "source_platform": "hackernews",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 9500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "hackernews"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "CLI agents make self-hosting on a home server easier and fun",
+        "url": "https://news.ycombinator.com/item?id=46580326",
+        "source_platform": "hackernews",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 9500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 171.3,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 95.0,
+          "cross_platform": 0,
+          "source_weight": 1.5,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-046",
+      "title": "Loki.Build",
+      "url": "https://www.producthunt.com/products/loki-build-2/launches/loki-build-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+newsnow+%28ID%3A+239216%29",
+      "mobile_url": "",
+      "source_platform": "producthunt",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 9500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "producthunt"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "Loki.Build",
+        "url": "https://www.producthunt.com/products/loki-build-2/launches/loki-build-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+newsnow+%28ID%3A+239216%29",
+        "source_platform": "producthunt",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 9500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 171.3,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 95.0,
+          "cross_platform": 0,
+          "source_weight": 1.5,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-047",
+      "title": "obra /      superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "mobile_url": "",
+      "source_platform": "github-trending-today",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 9500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "github-trending-today"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "obra /      superpowers",
+        "url": "https://github.com/obra/superpowers",
+        "source_platform": "github-trending-today",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 9500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 148.5,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 95.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-048",
+      "title": "浏览器扩展合集：派友近期推荐的 7 款浏览器扩展",
+      "url": "https://sspai.com/post/105249",
+      "mobile_url": "",
+      "source_platform": "sspai",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 9500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "sspai"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "浏览器扩展合集：派友近期推荐的 7 款浏览器扩展",
+        "url": "https://sspai.com/post/105249",
+        "source_platform": "sspai",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 9500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 137.0,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 95.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-049",
+      "title": "新“易中天”来了！GEO概念爆发 AI投资向应用价值迁移？",
+      "url": "https://www.cls.cn/detail/2254504",
+      "mobile_url": "",
+      "source_platform": "cls-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 9500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "cls-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "新“易中天”来了！GEO概念爆发 AI投资向应用价值迁移？",
+        "url": "https://www.cls.cn/detail/2254504",
+        "source_platform": "cls-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 9500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 148.5,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 95.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-050",
+      "title": "信维通信",
+      "url": "https://xueqiu.com/s/SZ300136",
+      "mobile_url": "",
+      "source_platform": "xueqiu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 9500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "xueqiu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "信维通信",
+        "url": "https://xueqiu.com/s/SZ300136",
+        "source_platform": "xueqiu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 2,
+        "heat_score": 9500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 148.5,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 95.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-051",
+      "title": "43度飞天茅台拟调降打款价至739元/瓶，零售价同步下调",
+      "url": "https://www.36kr.com/newsflashes/3636138550248712",
+      "mobile_url": "",
+      "source_platform": "36kr",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 9350,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "36kr"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "43度飞天茅台拟调降打款价至739元/瓶，零售价同步下调",
+        "url": "https://www.36kr.com/newsflashes/3636138550248712",
+        "source_platform": "36kr",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 9350,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 156.7,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 93.5,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-052",
+      "title": "美国司法部对美联储主席开启“刑事调查”，鲍威尔“这是美联储不听话的结果”",
+      "url": "https://wallstreetcn.com/articles/3763056",
+      "mobile_url": "",
+      "source_platform": "wallstreetcn-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 9350,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "wallstreetcn-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "美国司法部对美联储主席开启“刑事调查”，鲍威尔“这是美联储不听话的结果”",
+        "url": "https://wallstreetcn.com/articles/3763056",
+        "source_platform": "wallstreetcn-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 9350,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 156.7,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 93.5,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-053",
+      "title": "AI工具推荐｜这10个工具让我效率翻倍",
+      "url": "https://www.xiaohongshu.com/explore/mock1",
+      "mobile_url": "",
+      "source_platform": "xiaohongshu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 9230,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "xiaohongshu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "AI工具推荐｜这10个工具让我效率翻倍",
+        "url": "https://www.xiaohongshu.com/explore/mock1",
+        "source_platform": "xiaohongshu",
+        "source_type": "tikhub",
+        "content_type": "user_post",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "likes": 92300,
+          "comments": 18460,
+          "collects": 46150,
+          "hot_value": "923万"
+        },
+        "rank": 1,
+        "heat_score": 9230,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 111.9,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 92.3,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-054",
+      "title": "OpenAI",
+      "url": "https://twitter.com/search?q=OpenAI",
+      "mobile_url": "",
+      "source_platform": "twitter",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 9200,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "twitter"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "OpenAI",
+        "url": "https://twitter.com/search?q=OpenAI",
+        "source_platform": "twitter",
+        "source_type": "tikhub",
+        "content_type": "trending",
+        "content": "OpenAI发布新产品引发热议",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "tweet_count": 98000
+        },
+        "rank": 2,
+        "heat_score": 9200,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 144.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 92.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-055",
+      "title": "A股公司砸580万年薪返聘 最大近90岁",
+      "url": "https://www.baidu.com/s?wd=A%E8%82%A1%E5%85%AC%E5%8F%B8%E7%A0%B8580%E4%B8%87%E5%B9%B4%E8%96%AA%E8%BF%94%E8%81%98+%E6%9C%80%E5%A4%A7%E8%BF%9190%E5%B2%81",
+      "mobile_url": "",
+      "source_platform": "baidu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 8,
+      "heat_score": 9100,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "baidu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "A股公司砸580万年薪返聘 最大近90岁",
+        "url": "https://www.baidu.com/s?wd=A%E8%82%A1%E5%85%AC%E5%8F%B8%E7%A0%B8580%E4%B8%87%E5%B9%B4%E8%96%AA%E8%BF%94%E8%81%98+%E6%9C%80%E5%A4%A7%E8%BF%9190%E5%B2%81",
+        "source_platform": "baidu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 8,
+        "heat_score": 9100,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 97.0,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 91.0,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 16.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-056",
+      "title": "分割图片的小工具-splitimage.xyz",
+      "url": "https://www.v2ex.com/t/1184920",
+      "mobile_url": "",
+      "source_platform": "v2ex",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 9000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "v2ex"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "分割图片的小工具-splitimage.xyz",
+        "url": "https://www.v2ex.com/t/1184920",
+        "source_platform": "v2ex",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 9000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 130.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 90.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-057",
+      "title": "JRR Tolkien reads from The Hobbit for 30 Minutes (1952)",
+      "url": "https://news.ycombinator.com/item?id=46526896",
+      "mobile_url": "",
+      "source_platform": "hackernews",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 9000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "hackernews"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "JRR Tolkien reads from The Hobbit for 30 Minutes (1952)",
+        "url": "https://news.ycombinator.com/item?id=46526896",
+        "source_platform": "hackernews",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 9000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 163.2,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 90.0,
+          "cross_platform": 0,
+          "source_weight": 1.5,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-058",
+      "title": "Surgeflow",
+      "url": "https://www.producthunt.com/products/surgeflow/launches/surgeflow?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+newsnow+%28ID%3A+239216%29",
+      "mobile_url": "",
+      "source_platform": "producthunt",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 9000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "producthunt"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "Surgeflow",
+        "url": "https://www.producthunt.com/products/surgeflow/launches/surgeflow?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+newsnow+%28ID%3A+239216%29",
+        "source_platform": "producthunt",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 9000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 163.2,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 90.0,
+          "cross_platform": 0,
+          "source_weight": 1.5,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-059",
+      "title": "frankbria /      ralph-claude-code",
+      "url": "https://github.com/frankbria/ralph-claude-code",
+      "mobile_url": "",
+      "source_platform": "github-trending-today",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 9000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "github-trending-today"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "frankbria /      ralph-claude-code",
+        "url": "https://github.com/frankbria/ralph-claude-code",
+        "source_platform": "github-trending-today",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 9000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 141.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 90.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-060",
+      "title": "将旧 iPad 物尽其用，我把它变成了一个智能天气时钟",
+      "url": "https://sspai.com/post/105047",
+      "mobile_url": "",
+      "source_platform": "sspai",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 9000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "sspai"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "将旧 iPad 物尽其用，我把它变成了一个智能天气时钟",
+        "url": "https://sspai.com/post/105047",
+        "source_platform": "sspai",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 9000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 130.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 90.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-061",
+      "title": "两融新开154万户创近十年新高！总户数较2016年接近翻倍",
+      "url": "https://www.cls.cn/detail/2254540",
+      "mobile_url": "",
+      "source_platform": "cls-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 9000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "cls-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "两融新开154万户创近十年新高！总户数较2016年接近翻倍",
+        "url": "https://www.cls.cn/detail/2254540",
+        "source_platform": "cls-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 9000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 141.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 90.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-062",
+      "title": "乾照光电",
+      "url": "https://xueqiu.com/s/SZ300102",
+      "mobile_url": "",
+      "source_platform": "xueqiu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 9000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "xueqiu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "乾照光电",
+        "url": "https://xueqiu.com/s/SZ300102",
+        "source_platform": "xueqiu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 3,
+        "heat_score": 9000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 141.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 90.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-063",
+      "title": "谁教你这样堆雪人的",
+      "url": "https://www.douyin.com/hot/2365083",
+      "mobile_url": "",
+      "source_platform": "douyin",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 9,
+      "heat_score": 9000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "douyin"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "谁教你这样堆雪人的",
+        "url": "https://www.douyin.com/hot/2365083",
+        "source_platform": "douyin",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 9,
+        "heat_score": 9000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 95.8,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 90.0,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 16.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-064",
+      "title": "求助网友帮按年猪的女子走红",
+      "url": "https://www.toutiao.com/trending/7594129257811623990/",
+      "mobile_url": "",
+      "source_platform": "toutiao",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 6,
+      "heat_score": 9000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "toutiao"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "求助网友帮按年猪的女子走红",
+        "url": "https://www.toutiao.com/trending/7594129257811623990/",
+        "source_platform": "toutiao",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 6,
+        "heat_score": 9000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 107.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 90.0,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 17.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-065",
+      "title": "伊朗外长称已控制国内局势",
+      "url": "https://search.bilibili.com/all?keyword=%E4%BC%8A%E6%9C%97%E5%A4%96%E9%95%BF%E7%A7%B0%E5%B7%B2%E6%8E%A7%E5%88%B6%E5%9B%BD%E5%86%85%E5%B1%80%E5%8A%BF",
+      "mobile_url": "",
+      "source_platform": "bilibili-hot-search",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 6,
+      "heat_score": 9000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "bilibili-hot-search"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "伊朗外长称已控制国内局势",
+        "url": "https://search.bilibili.com/all?keyword=%E4%BC%8A%E6%9C%97%E5%A4%96%E9%95%BF%E7%A7%B0%E5%B7%B2%E6%8E%A7%E5%88%B6%E5%9B%BD%E5%86%85%E5%B1%80%E5%8A%BF",
+        "source_platform": "bilibili-hot-search",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 6,
+        "heat_score": 9000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 107.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 90.0,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 17.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-066",
+      "title": "鹏鹞环保回应国家航天局商业航天司收购传闻：纯属不实信息",
+      "url": "https://www.36kr.com/newsflashes/3636132022109440",
+      "mobile_url": "",
+      "source_platform": "36kr",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 8800,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "36kr"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "鹏鹞环保回应国家航天局商业航天司收购传闻：纯属不实信息",
+        "url": "https://www.36kr.com/newsflashes/3636132022109440",
+        "source_platform": "36kr",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 8800,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 148.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 88.0,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-067",
+      "title": "A股成交额再创新高！沪指豪取17连阳，AI应用、商业航天大爆发，港股智谱狂飙30%，沪银涨超14%",
+      "url": "https://wallstreetcn.com/articles/3763068",
+      "mobile_url": "",
+      "source_platform": "wallstreetcn-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 8800,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "wallstreetcn-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "A股成交额再创新高！沪指豪取17连阳，AI应用、商业航天大爆发，港股智谱狂飙30%，沪银涨超14%",
+        "url": "https://wallstreetcn.com/articles/3763068",
+        "source_platform": "wallstreetcn-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 8800,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 148.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 88.0,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-068",
+      "title": "开源项目",
+      "url": "https://s.weibo.com/weibo?q=开源项目",
+      "mobile_url": "",
+      "source_platform": "weibo",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 8700,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "weibo"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "开源项目",
+        "url": "https://s.weibo.com/weibo?q=开源项目",
+        "source_platform": "weibo",
+        "source_type": "tikhub",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "hot_value": 870000
+        },
+        "rank": 5,
+        "heat_score": 8700,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 105.0,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 87.0,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-069",
+      "title": "程序员转行做自媒体的真实收入",
+      "url": "https://www.xiaohongshu.com/explore/mock2",
+      "mobile_url": "",
+      "source_platform": "xiaohongshu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 2,
+      "heat_score": 8560,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "xiaohongshu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "程序员转行做自媒体的真实收入",
+        "url": "https://www.xiaohongshu.com/explore/mock2",
+        "source_platform": "xiaohongshu",
+        "source_type": "tikhub",
+        "content_type": "user_post",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "likes": 85600,
+          "comments": 17120,
+          "collects": 42800,
+          "hot_value": "856万"
+        },
+        "rank": 2,
+        "heat_score": 8560,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 104.8,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 85.6,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 19.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-070",
+      "title": "如何评价AI对程序员行业的冲击？",
+      "url": "https://www.zhihu.com/question/mock1",
+      "mobile_url": "",
+      "source_platform": "zhihu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 1,
+      "heat_score": 8500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "zhihu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "如何评价AI对程序员行业的冲击？",
+        "url": "https://www.zhihu.com/question/mock1",
+        "source_platform": "zhihu",
+        "source_type": "newsnow",
+        "content_type": "discussion",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "heat": 8500000
+        },
+        "rank": 1,
+        "heat_score": 8500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 125.5,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 85.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 19.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-071",
+      "title": "看到最近大家在收 loon 兑换码，分享个简单的支付宝购买 apple store 美区充值的教程",
+      "url": "https://www.v2ex.com/t/1184913",
+      "mobile_url": "",
+      "source_platform": "v2ex",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 8500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "v2ex"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "看到最近大家在收 loon 兑换码，分享个简单的支付宝购买 apple store 美区充值的教程",
+        "url": "https://www.v2ex.com/t/1184913",
+        "source_platform": "v2ex",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 8500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 124.1,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 85.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-072",
+      "title": "Himalayas bare and rocky after reduced winter snowfall, scientists warn",
+      "url": "https://news.ycombinator.com/item?id=46583464",
+      "mobile_url": "",
+      "source_platform": "hackernews",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 8500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "hackernews"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "Himalayas bare and rocky after reduced winter snowfall, scientists warn",
+        "url": "https://news.ycombinator.com/item?id=46583464",
+        "source_platform": "hackernews",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 8500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 155.1,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 85.0,
+          "cross_platform": 0,
+          "source_weight": 1.5,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-073",
+      "title": "PostSyncer",
+      "url": "https://www.producthunt.com/products/postsyncer-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+newsnow+%28ID%3A+239216%29",
+      "mobile_url": "",
+      "source_platform": "producthunt",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 8500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "producthunt"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "PostSyncer",
+        "url": "https://www.producthunt.com/products/postsyncer-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+newsnow+%28ID%3A+239216%29",
+        "source_platform": "producthunt",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 8500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 155.1,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 85.0,
+          "cross_platform": 0,
+          "source_weight": 1.5,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-074",
+      "title": "davila7 /      claude-code-templates",
+      "url": "https://github.com/davila7/claude-code-templates",
+      "mobile_url": "",
+      "source_platform": "github-trending-today",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 8500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "github-trending-today"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "davila7 /      claude-code-templates",
+        "url": "https://github.com/davila7/claude-code-templates",
+        "source_platform": "github-trending-today",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 8500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 134.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 85.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-075",
+      "title": "当世界尽头成为热搜：一份南极旅游指南",
+      "url": "https://sspai.com/post/104946",
+      "mobile_url": "",
+      "source_platform": "sspai",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 8500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "sspai"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "当世界尽头成为热搜：一份南极旅游指南",
+        "url": "https://sspai.com/post/104946",
+        "source_platform": "sspai",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 8500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 124.1,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 85.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-076",
+      "title": "鲍威尔遭刑事调查冲击全球市场：美元急跌、金价升破4600美元",
+      "url": "https://www.cls.cn/detail/2254455",
+      "mobile_url": "",
+      "source_platform": "cls-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 8500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "cls-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "鲍威尔遭刑事调查冲击全球市场：美元急跌、金价升破4600美元",
+        "url": "https://www.cls.cn/detail/2254455",
+        "source_platform": "cls-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 8500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 134.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 85.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-077",
+      "title": "航天发展",
+      "url": "https://xueqiu.com/s/SZ000547",
+      "mobile_url": "",
+      "source_platform": "xueqiu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 8500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "xueqiu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "航天发展",
+        "url": "https://xueqiu.com/s/SZ000547",
+        "source_platform": "xueqiu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 4,
+        "heat_score": 8500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 134.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 85.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-078",
+      "title": "#远程办公",
+      "url": "https://twitter.com/search?q=#远程办公",
+      "mobile_url": "",
+      "source_platform": "twitter",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 8400,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "twitter"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "#远程办公",
+        "url": "https://twitter.com/search?q=#远程办公",
+        "source_platform": "twitter",
+        "source_type": "tikhub",
+        "content_type": "trending",
+        "content": "远程工作趋势讨论",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "tweet_count": 76000
+        },
+        "rank": 3,
+        "heat_score": 8400,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 133.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 84.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-079",
+      "title": "宋清辉：A股4000点潜藏风险不容忽视",
+      "url": "https://www.toutiao.com/trending/7594345010414226980/",
+      "mobile_url": "",
+      "source_platform": "toutiao",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 7,
+      "heat_score": 8400,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "toutiao"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "宋清辉：A股4000点潜藏风险不容忽视",
+        "url": "https://www.toutiao.com/trending/7594345010414226980/",
+        "source_platform": "toutiao",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 7,
+        "heat_score": 8400,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 101.2,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 84.0,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 17.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-080",
+      "title": "想要膝盖“长寿” 少做这5件事",
+      "url": "https://www.baidu.com/s?wd=%E6%83%B3%E8%A6%81%E8%86%9D%E7%9B%96%E2%80%9C%E9%95%BF%E5%AF%BF%E2%80%9D+%E5%B0%91%E5%81%9A%E8%BF%995%E4%BB%B6%E4%BA%8B",
+      "mobile_url": "",
+      "source_platform": "baidu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 9,
+      "heat_score": 8400,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "baidu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "想要膝盖“长寿” 少做这5件事",
+        "url": "https://www.baidu.com/s?wd=%E6%83%B3%E8%A6%81%E8%86%9D%E7%9B%96%E2%80%9C%E9%95%BF%E5%AF%BF%E2%80%9D+%E5%B0%91%E5%81%9A%E8%BF%995%E4%BB%B6%E4%BA%8B",
+        "source_platform": "baidu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 9,
+        "heat_score": 8400,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 90.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 84.0,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 16.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-081",
+      "title": "鲁豫不许自己成为恋爱脑",
+      "url": "https://search.bilibili.com/all?keyword=%E9%B2%81%E8%B1%AB%E4%B8%8D%E8%AE%B8%E8%87%AA%E5%B7%B1%E6%88%90%E4%B8%BA%E6%81%8B%E7%88%B1%E8%84%91",
+      "mobile_url": "",
+      "source_platform": "bilibili-hot-search",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 7,
+      "heat_score": 8400,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "bilibili-hot-search"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "鲁豫不许自己成为恋爱脑",
+        "url": "https://search.bilibili.com/all?keyword=%E9%B2%81%E8%B1%AB%E4%B8%8D%E8%AE%B8%E8%87%AA%E5%B7%B1%E6%88%90%E4%B8%BA%E6%81%8B%E7%88%B1%E8%84%91",
+        "source_platform": "bilibili-hot-search",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 7,
+        "heat_score": 8400,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 101.2,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 84.0,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 17.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-082",
+      "title": "韩国制定今年出口160亿美元食品及农产品目标",
+      "url": "https://www.36kr.com/newsflashes/3636128420250880",
+      "mobile_url": "",
+      "source_platform": "36kr",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 6,
+      "heat_score": 8250,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "36kr"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "韩国制定今年出口160亿美元食品及农产品目标",
+        "url": "https://www.36kr.com/newsflashes/3636128420250880",
+        "source_platform": "36kr",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 6,
+        "heat_score": 8250,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 140.1,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 82.5,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 17.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-083",
+      "title": "2026最大的交易主题：输不起的特朗普，国际秩序的终结",
+      "url": "https://wallstreetcn.com/articles/3763038",
+      "mobile_url": "",
+      "source_platform": "wallstreetcn-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 6,
+      "heat_score": 8250,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "wallstreetcn-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "2026最大的交易主题：输不起的特朗普，国际秩序的终结",
+        "url": "https://wallstreetcn.com/articles/3763038",
+        "source_platform": "wallstreetcn-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 6,
+        "heat_score": 8250,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 140.1,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 82.5,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 17.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-084",
+      "title": "加拿大总理卡尼将访华",
+      "url": "https://www.douyin.com/hot/2365315",
+      "mobile_url": "",
+      "source_platform": "douyin",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 10,
+      "heat_score": 8250,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "douyin"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "加拿大总理卡尼将访华",
+        "url": "https://www.douyin.com/hot/2365315",
+        "source_platform": "douyin",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 10,
+        "heat_score": 8250,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 88.7,
+        "priority_level": "high",
+        "breakdown": {
+          "heat": 82.5,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 16.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-085",
+      "title": "AI 赛事通 - 2026 年 1 月 AI 竞赛和黑客松汇总合集",
+      "url": "https://www.v2ex.com/t/1184911",
+      "mobile_url": "",
+      "source_platform": "v2ex",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 8000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "v2ex"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "AI 赛事通 - 2026 年 1 月 AI 竞赛和黑客松汇总合集",
+        "url": "https://www.v2ex.com/t/1184911",
+        "source_platform": "v2ex",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 8000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 117.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 80.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-086",
+      "title": "39c3: In-house electronics manufacturing from scratch: How hard can it be? [video]",
+      "url": "https://news.ycombinator.com/item?id=46553137",
+      "mobile_url": "",
+      "source_platform": "hackernews",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 8000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "hackernews"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "39c3: In-house electronics manufacturing from scratch: How hard can it be? [video]",
+        "url": "https://news.ycombinator.com/item?id=46553137",
+        "source_platform": "hackernews",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 8000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 147.0,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 80.0,
+          "cross_platform": 0,
+          "source_weight": 1.5,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-087",
+      "title": "Typeless for iOS",
+      "url": "https://www.producthunt.com/products/typeless-2/launches/typeless-for-ios?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+newsnow+%28ID%3A+239216%29",
+      "mobile_url": "",
+      "source_platform": "producthunt",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 8000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "producthunt"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "Typeless for iOS",
+        "url": "https://www.producthunt.com/products/typeless-2/launches/typeless-for-ios?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+newsnow+%28ID%3A+239216%29",
+        "source_platform": "producthunt",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 8000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 147.0,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 80.0,
+          "cross_platform": 0,
+          "source_weight": 1.5,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-088",
+      "title": "makeplane /      plane",
+      "url": "https://github.com/makeplane/plane",
+      "mobile_url": "",
+      "source_platform": "github-trending-today",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 8000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "github-trending-today"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "makeplane /      plane",
+        "url": "https://github.com/makeplane/plane",
+        "source_platform": "github-trending-today",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 8000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 127.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 80.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-089",
+      "title": "关于「学习」，一些流传甚广的误读和迷思",
+      "url": "https://sspai.com/post/104956",
+      "mobile_url": "",
+      "source_platform": "sspai",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 8000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "sspai"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "关于「学习」，一些流传甚广的误读和迷思",
+        "url": "https://sspai.com/post/104956",
+        "source_platform": "sspai",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 8000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 117.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 80.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-090",
+      "title": "存储涨价潮再蔓延：封测报价大涨30% 产业链开启扩产",
+      "url": "https://www.cls.cn/detail/2254438",
+      "mobile_url": "",
+      "source_platform": "cls-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 8000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "cls-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "存储涨价潮再蔓延：封测报价大涨30% 产业链开启扩产",
+        "url": "https://www.cls.cn/detail/2254438",
+        "source_platform": "cls-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 8000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 127.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 80.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-091",
+      "title": "鹭燕医药",
+      "url": "https://xueqiu.com/s/SZ002788",
+      "mobile_url": "",
+      "source_platform": "xueqiu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 5,
+      "heat_score": 8000,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "xueqiu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "鹭燕医药",
+        "url": "https://xueqiu.com/s/SZ002788",
+        "source_platform": "xueqiu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 5,
+        "heat_score": 8000,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 127.4,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 80.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 18.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-092",
+      "title": "远程工作一年后的真实感受",
+      "url": "https://www.xiaohongshu.com/explore/mock3",
+      "mobile_url": "",
+      "source_platform": "xiaohongshu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 3,
+      "heat_score": 7820,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "xiaohongshu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "远程工作一年后的真实感受",
+        "url": "https://www.xiaohongshu.com/explore/mock3",
+        "source_platform": "xiaohongshu",
+        "source_type": "tikhub",
+        "content_type": "user_post",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "likes": 78200,
+          "comments": 15640,
+          "collects": 39100,
+          "hot_value": "782万"
+        },
+        "rank": 3,
+        "heat_score": 7820,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 97.0,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 78.2,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 18.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-093",
+      "title": "U23国足1-0澳大利亚",
+      "url": "https://www.toutiao.com/trending/7594096641569869322/",
+      "mobile_url": "",
+      "source_platform": "toutiao",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 8,
+      "heat_score": 7800,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "toutiao"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "U23国足1-0澳大利亚",
+        "url": "https://www.toutiao.com/trending/7594096641569869322/",
+        "source_platform": "toutiao",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 8,
+        "heat_score": 7800,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 94.8,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 78.0,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 16.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-094",
+      "title": "圆脸对话陆铭教授畅聊经济",
+      "url": "https://search.bilibili.com/all?keyword=%E5%9C%86%E8%84%B8%E5%AF%B9%E8%AF%9D%E9%99%86%E9%93%AD%E6%95%99%E6%8E%88%E7%95%85%E8%81%8A%E7%BB%8F%E6%B5%8E",
+      "mobile_url": "",
+      "source_platform": "bilibili-hot-search",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 8,
+      "heat_score": 7800,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "bilibili-hot-search"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "圆脸对话陆铭教授畅聊经济",
+        "url": "https://search.bilibili.com/all?keyword=%E5%9C%86%E8%84%B8%E5%AF%B9%E8%AF%9D%E9%99%86%E9%93%AD%E6%95%99%E6%8E%88%E7%95%85%E8%81%8A%E7%BB%8F%E6%B5%8E",
+        "source_platform": "bilibili-hot-search",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 8,
+        "heat_score": 7800,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 94.8,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 78.0,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 16.8
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-095",
+      "title": "马鲁蒂铃木拟斥资近5.5亿美元在印度增产",
+      "url": "https://www.36kr.com/newsflashes/3636125189686278",
+      "mobile_url": "",
+      "source_platform": "36kr",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 7,
+      "heat_score": 7700,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "36kr"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "马鲁蒂铃木拟斥资近5.5亿美元在印度增产",
+        "url": "https://www.36kr.com/newsflashes/3636125189686278",
+        "source_platform": "36kr",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 7,
+        "heat_score": 7700,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 131.9,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 77.0,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 17.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-096",
+      "title": "AI真的来了，经济扛得住吗？——“大空头”、“AI巨头”与“顶尖科技博主”的一场激辩",
+      "url": "https://wallstreetcn.com/articles/3763040",
+      "mobile_url": "",
+      "source_platform": "wallstreetcn-hot",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 7,
+      "heat_score": 7700,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "wallstreetcn-hot"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "AI真的来了，经济扛得住吗？——“大空头”、“AI巨头”与“顶尖科技博主”的一场激辩",
+        "url": "https://wallstreetcn.com/articles/3763040",
+        "source_platform": "wallstreetcn-hot",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 7,
+        "heat_score": 7700,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 131.9,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 77.0,
+          "cross_platform": 0,
+          "source_weight": 1.4,
+          "recency": 17.2
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-097",
+      "title": "三大指数涨超1% 两市成交额创新高",
+      "url": "https://www.baidu.com/s?wd=%E4%B8%89%E5%A4%A7%E6%8C%87%E6%95%B0%E6%B6%A8%E8%B6%851%25+%E4%B8%A4%E5%B8%82%E6%88%90%E4%BA%A4%E9%A2%9D%E5%88%9B%E6%96%B0%E9%AB%98",
+      "mobile_url": "",
+      "source_platform": "baidu",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 10,
+      "heat_score": 7700,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "baidu"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "三大指数涨超1% 两市成交额创新高",
+        "url": "https://www.baidu.com/s?wd=%E4%B8%89%E5%A4%A7%E6%8C%87%E6%95%B0%E6%B6%A8%E8%B6%851%25+%E4%B8%A4%E5%B8%82%E6%88%90%E4%BA%A4%E9%A2%9D%E5%88%9B%E6%96%B0%E9%AB%98",
+        "source_platform": "baidu",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 10,
+        "heat_score": 7700,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 83.7,
+        "priority_level": "high",
+        "breakdown": {
+          "heat": 77.0,
+          "cross_platform": 0,
+          "source_weight": 0.9,
+          "recency": 16.0
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-098",
+      "title": "Rust语言",
+      "url": "https://twitter.com/search?q=Rust语言",
+      "mobile_url": "",
+      "source_platform": "twitter",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 4,
+      "heat_score": 7600,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "twitter"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "Rust语言",
+        "url": "https://twitter.com/search?q=Rust语言",
+        "source_platform": "twitter",
+        "source_type": "tikhub",
+        "content_type": "trending",
+        "content": "Rust编程语言越来越火",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "tweet_count": 54000
+        },
+        "rank": 4,
+        "heat_score": 7600,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 122.7,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 76.0,
+          "cross_platform": 0,
+          "source_weight": 1.3,
+          "recency": 18.4
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-099",
+      "title": "副业赚钱",
+      "url": "https://s.weibo.com/weibo?q=副业赚钱",
+      "mobile_url": "",
+      "source_platform": "weibo",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 6,
+      "heat_score": 7600,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "weibo"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "副业赚钱",
+        "url": "https://s.weibo.com/weibo?q=副业赚钱",
+        "source_platform": "weibo",
+        "source_type": "tikhub",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {
+          "hot_value": 760000
+        },
+        "rank": 6,
+        "heat_score": 7600,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 93.6,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 76.0,
+          "cross_platform": 0,
+          "source_weight": 1.0,
+          "recency": 17.6
+        }
+      }
+    },
+    {
+      "id": "news-2026-01-12-100",
+      "title": "🚀 年底了，打扫一下 git 分支，分享一个用 Rust 写的 Git 分支清理工具",
+      "url": "https://www.v2ex.com/t/1184904",
+      "mobile_url": "",
+      "source_platform": "v2ex",
+      "source_name": "",
+      "industry": "unknown",
+      "rank": 6,
+      "heat_score": 7500,
+      "summary": "",
+      "cross_platform": {
+        "is_trending": false,
+        "platforms": [
+          "v2ex"
+        ],
+        "total_mentions": 1
+      },
+      "_original": {
+        "title": "🚀 年底了，打扫一下 git 分支，分享一个用 Rust 写的 Git 分支清理工具",
+        "url": "https://www.v2ex.com/t/1184904",
+        "source_platform": "v2ex",
+        "source_type": "newsnow",
+        "content_type": "hot_search",
+        "content": "",
+        "author": "",
+        "publish_time": null,
+        "engagement": {},
+        "rank": 6,
+        "heat_score": 7500,
+        "tags": []
+      },
+      "priority": {
+        "total_score": 111.1,
+        "priority_level": "critical",
+        "breakdown": {
+          "heat": 75.0,
+          "cross_platform": 0,
+          "source_weight": 1.2,
+          "recency": 17.6
+        }
+      }
+    }
+  ]
+}

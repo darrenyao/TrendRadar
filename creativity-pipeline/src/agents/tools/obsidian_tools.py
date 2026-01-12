@@ -266,12 +266,18 @@ async def update_status(args: dict) -> dict:
 
 
 def get_all_tools() -> List:
-    """Return all Obsidian tools for MCP server.
+    """Return all tools for MCP server.
+
+    Includes:
+    - Obsidian tools (cards, ideas, experiments)
+    - Data tools (raw news, summaries)
 
     Returns:
-        List of SdkMcpTool objects to register with the MCP server.
+        List of tool functions to register with the MCP server.
     """
-    return [
+    from .data_tools import get_data_tools
+
+    obsidian_tools = [
         read_cards,
         read_ideas,
         read_experiments,
@@ -280,6 +286,11 @@ def get_all_tools() -> List:
         create_experiment,
         update_status,
     ]
+
+    # Add data tools for Agent-driven analysis
+    data_tools = get_data_tools()
+
+    return obsidian_tools + data_tools
 
 
 # Export implementation functions for testing

@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  creativity-pipeline:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: creativity-pipeline
+    restart: unless-stopped
+
+    # Volume mounts
+    volumes:
+      # Obsidian vault - mount your local vault or a shared directory
+      - ${OBSIDIAN_VAULT_PATH:-./vault}:/vault
+      # Configuration (read-only)
+      - ./config:/app/config:ro
+      # Logs
+      - ./logs:/app/logs
+
+    # Environment variables
+    environment:
+      # Timezone
+      - TZ=Asia/Shanghai
+
+      # API Keys
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+
+      # DingTalk configuration
+      - DINGTALK_CLIENT_ID=${DINGTALK_CLIENT_ID}
+      - DINGTALK_CLIENT_SECRET=${DINGTALK_CLIENT_SECRET}
+      - DINGTALK_CORP_ID=${DINGTALK_CORP_ID}
+
+      # Schedule times (HH:MM format)
+      - MORNING_PUSH_TIME=${MORNING_PUSH_TIME:-09:00}
+      - AFTERNOON_PUSH_TIME=${AFTERNOON_PUSH_TIME:-14:00}
+      - EVENING_PUSH_TIME=${EVENING_PUSH_TIME:-21:30}
+
+      # Vault path inside container
+      - VAULT_PATH=/vault
+
+      # Optional proxy
+      - HTTP_PROXY=${HTTP_PROXY:-}
+      - HTTPS_PROXY=${HTTPS_PROXY:-}
+
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # Network mode
+    network_mode: bridge
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+# Optional: Named volumes for persistence
+volumes:
+  vault_data:
+    driver: local

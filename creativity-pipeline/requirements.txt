@@ -6,10 +6,11 @@ PyYAML>=6.0
 python-dateutil>=2.8.0
 
 # ==================== DingTalk (Developer A) ====================
-dingtalk-stream>=1.0.0
+dingtalk-stream>=0.24.0
 alibabacloud-dingtalk>=2.0.0
 alibabacloud-tea-openapi>=0.3.0
 alibabacloud-tea-util>=0.3.0
+python-socks[asyncio]>=2.0.0  # Required for WebSocket proxy support
 
 # ==================== Agent SDK (Developer B) ====================
 claude-agent-sdk>=0.1.0
@@ -24,3 +25,5 @@ pytest-cov>=4.0.0
 black>=23.0.0
 isort>=5.12.0
 mypy>=1.0.0
+python-dotenv>=1.0.0
+beautifulsoup4

@@ -1,0 +1,23 @@
+# Creativity Pipeline Cron Schedule
+# Uses supercronic for containerized cron jobs
+# Format: minute hour day month weekday command
+
+# Morning push - 09:00 daily
+# Generate input cards and top 3 ideas
+0 9 * * * cd /app && python -m src.main --touch-point morning >> /app/logs/morning.log 2>&1
+
+# Afternoon push - 14:00 daily
+# Push experiment tasks for confirmed idea
+0 14 * * * cd /app && python -m src.main --touch-point afternoon >> /app/logs/afternoon.log 2>&1
+
+# Evening push - 21:30 daily
+# Collect evidence and retrospective
+30 21 * * * cd /app && python -m src.main --touch-point evening >> /app/logs/evening.log 2>&1
+
+# Evidence timeout check - 22:00 daily
+# Auto-downgrade experiments without evidence
+0 22 * * * cd /app && python -m src.main --check-timeout >> /app/logs/timeout.log 2>&1
+
+# Daily archive - 23:30 daily
+# Archive completed experiments
+30 23 * * * cd /app && python -m src.main --archive >> /app/logs/archive.log 2>&1

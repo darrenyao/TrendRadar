@@ -4,7 +4,14 @@ Provides AI-powered agents for the creativity pipeline:
 - InputFeederAgent: Transform news into cards
 - IdeaFactoryAgent: Generate ideas from cards
 - MVPRunnerAgent: Design experiments from ideas
+
+Preprocessing utilities (no SDK dependency):
+- NewsPreprocessor: Deduplicate and cluster news
+- NewsCluster: Cluster data structure
 """
+
+# Preprocessing utilities (no SDK dependency)
+from .news_preprocessor import NewsPreprocessor, NewsCluster
 
 # Check if Claude Agent SDK is available
 try:
@@ -34,6 +41,9 @@ except ImportError:
 __all__ = [
     # SDK availability flag
     "HAS_CLAUDE_SDK",
+    # Preprocessing (no SDK dependency)
+    "NewsPreprocessor",
+    "NewsCluster",
     # Base
     "BaseAgent",
     # Agents

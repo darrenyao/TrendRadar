@@ -14,6 +14,10 @@ from typing import Optional, Dict, Any
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# Load environment variables from .env file (override shell env)
+from dotenv import load_dotenv
+load_dotenv(override=True)
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -24,7 +28,7 @@ logger = logging.getLogger(__name__)
 # Core imports (always available)
 from src.state import PipelineStateMachine, obsidian_store
 from src.scheduler import DailyScheduler
-from src.data_sources import fetch_all_sources, get_top_items
+from src.data_sources import fetch_all_sources, get_top_items, NewsStore
 
 # Agent imports (requires Claude Agent SDK)
 from src.agents import HAS_CLAUDE_SDK
@@ -41,9 +45,14 @@ else:
 from src.dingtalk import DingTalkService, HAS_REPLY
 if HAS_REPLY:
     from src.dingtalk import reply_service
+    from src.dingtalk.stream_client import DingTalkStreamManager, HAS_DINGTALK_STREAM
+    from src.dingtalk.pipeline_handler import PipelineCallbackHandler
     logger.info("DingTalk SDK available - notifications enabled")
 else:
     reply_service = None
+    DingTalkStreamManager = None
+    PipelineCallbackHandler = None
+    HAS_DINGTALK_STREAM = False
     logger.warning("DingTalk SDK not available - notifications disabled")
 
 
@@ -57,6 +66,9 @@ _agents: Dict[str, Any] = {}
 
 # DingTalk service (initialized lazily if SDK available)
 _dingtalk_service: Optional[DingTalkService] = None
+
+# Stream manager for receiving user replies
+_stream_manager = None
 
 
 def get_agents() -> Dict[str, Any]:
@@ -76,18 +88,48 @@ def get_dingtalk_service() -> Optional[DingTalkService]:
     """Get or initialize DingTalk service."""
     global _dingtalk_service
     if _dingtalk_service is None and HAS_REPLY and reply_service:
-        # 支持单聊模式（工号）或群聊模式（conversation_id）
-        user_id = os.environ.get("DINGTALK_USER_ID", "")
+        # 支持单聊模式（union_id）或群聊模式（conversation_id）
+        union_id = os.environ.get("DINGTALK_UNION_ID", "")
         conversation_id = os.environ.get("DINGTALK_CONVERSATION_ID", "")
 
-        target = user_id or conversation_id
+        target = union_id or conversation_id
         if target:
             _dingtalk_service = DingTalkService(reply_service, target)
-            mode = "单聊" if user_id else "群聊"
-            logger.info(f"DingTalk service initialized ({mode}: {target})")
+            mode = "单聊" if union_id else "群聊"
+            logger.info(f"DingTalk service initialized ({mode}: {target[:20]}...)")
         else:
-            logger.warning("DINGTALK_USER_ID or DINGTALK_CONVERSATION_ID not set")
+            logger.warning("DINGTALK_UNION_ID or DINGTALK_CONVERSATION_ID not set")
     return _dingtalk_service
+
+
+def start_stream_manager():
+    """Start the DingTalk stream manager for receiving user replies."""
+    global _stream_manager
+    if _stream_manager is not None:
+        return _stream_manager
+
+    if not HAS_DINGTALK_STREAM:
+        logger.warning("DingTalk stream not available - callback handler disabled")
+        return None
+
+    try:
+        # Create handler with state machine and agents
+        agents = get_agents()
+        handler = PipelineCallbackHandler(state_machine, agents)
+
+        # Set dingtalk service for sending responses
+        dingtalk = get_dingtalk_service()
+        if dingtalk:
+            handler.set_dingtalk_service(dingtalk)
+
+        # Create and start stream manager
+        _stream_manager = DingTalkStreamManager(handler)
+        _stream_manager.start_async()
+        logger.info("Stream manager started - listening for user replies")
+        return _stream_manager
+    except Exception as e:
+        logger.error(f"Failed to start stream manager: {e}", exc_info=True)
+        return None
 
 
 # ==================== Touch Point Handlers ====================
@@ -96,23 +138,30 @@ async def morning_push():
     """Morning touch point handler (09:00).
 
     1. Fetch news from all sources
-    2. Generate input cards (via InputFeederAgent)
-    3. Generate ideas from selected cards (via IdeaFactoryAgent)
-    4. Send morning push via DingTalk
+    2. Save to local storage (NewsStore) for Agent-driven analysis
+    3. Generate input cards (via InputFeederAgent reading local data)
+    4. Generate ideas from selected cards (via IdeaFactoryAgent)
+    5. Send morning push via DingTalk
     """
     logger.info("Morning push starting...")
 
     # 1. Fetch raw news
     logger.info("Fetching news...")
-    raw_news = get_top_items(limit=50, cross_platform_only=True)
+    raw_news = get_top_items(limit=100)  # Increased limit for richer analysis
     logger.info(f"Got {len(raw_news)} news items")
 
-    # 2. Generate input cards via Agent
+    # 2. Save to NewsStore for Agent-driven analysis
+    store = NewsStore()
+    save_path = store.save_fetch_result(raw_news, time_slot="morning")
+    logger.info(f"Saved news data to {save_path}")
+
+    # 3. Generate input cards via Agent (reads from local storage)
     agents = get_agents()
     if agents.get("input_feeder"):
         try:
             logger.info("Generating cards via InputFeederAgent...")
-            card_ids = await agents["input_feeder"].process_news(raw_news[:10])
+            # Agent reads from local file and performs dynamic analysis
+            card_ids = await agents["input_feeder"].analyze_news()
             logger.info(f"Generated {len(card_ids)} cards: {card_ids}")
         except Exception as e:
             logger.error(f"Card generation failed: {e}", exc_info=True)
@@ -308,6 +357,9 @@ async def run_scheduler():
     """Run the scheduler in continuous mode."""
     logger.info("Starting Creativity Pipeline Scheduler...")
 
+    # Start stream manager to listen for user replies
+    start_stream_manager()
+
     scheduler = DailyScheduler(
         morning_handler=morning_push,
         afternoon_handler=afternoon_push,
@@ -323,8 +375,17 @@ async def run_scheduler():
     await scheduler.start()
 
 
-async def run_once(touch_point: Optional[str] = None):
-    """Run a single touch point or all in sequence."""
+async def run_once(touch_point: Optional[str] = None, wait_for_reply: bool = True):
+    """Run a single touch point and optionally wait for replies.
+
+    Args:
+        touch_point: Which touch point to run (morning/afternoon/evening)
+        wait_for_reply: If True, keep stream running to receive user replies
+    """
+    # Start stream manager to receive replies
+    if wait_for_reply:
+        start_stream_manager()
+
     if touch_point:
         handlers = {
             "morning": morning_push,
@@ -336,11 +397,24 @@ async def run_once(touch_point: Optional[str] = None):
             await handler()
         else:
             logger.error(f"Unknown touch point: {touch_point}")
+            return
     else:
         logger.info("Running all touch points in sequence...")
         await morning_push()
         await afternoon_push()
         await evening_push()
+
+    # Keep running to receive replies
+    if wait_for_reply and _stream_manager and _stream_manager.is_running():
+        logger.info("=" * 50)
+        logger.info("Waiting for user replies... (Press Ctrl+C to stop)")
+        logger.info("=" * 50)
+        try:
+            while _stream_manager.is_running():
+                await asyncio.sleep(1)
+        except KeyboardInterrupt:
+            logger.info("Received interrupt, shutting down...")
+            _stream_manager.stop()
 
 
 def print_status():
@@ -398,8 +472,23 @@ def main():
         action="store_true",
         help="Print pipeline status",
     )
+    parser.add_argument(
+        "--mock-data",
+        action="store_true",
+        help="Use mock data instead of calling external APIs (for testing)",
+    )
+    parser.add_argument(
+        "--no-wait",
+        action="store_true",
+        help="Exit after push without waiting for replies (for --mode once)",
+    )
 
     args = parser.parse_args()
+
+    # Set mock data mode in environment (for data source adapters)
+    if args.mock_data:
+        os.environ["MOCK_DATA_SOURCES"] = "1"
+        logger.info("Mock data mode enabled - external APIs will not be called")
 
     # Handle special commands
     if args.check_timeout:
@@ -418,7 +507,8 @@ def main():
     if args.mode == "scheduler":
         asyncio.run(run_scheduler())
     else:
-        asyncio.run(run_once(args.touch_point))
+        wait_for_reply = not args.no_wait
+        asyncio.run(run_once(args.touch_point, wait_for_reply))
 
 
 if __name__ == "__main__":

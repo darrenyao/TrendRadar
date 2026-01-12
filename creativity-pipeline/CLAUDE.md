@@ -79,10 +79,13 @@ source .venv/bin/activate
 # Check status
 python -m src.main --status
 
-# Run single touchpoint
+# Run single touchpoint (waits for user replies, Ctrl+C to stop)
 python -m src.main --mode once --touch-point morning
 python -m src.main --mode once --touch-point afternoon
 python -m src.main --mode once --touch-point evening
+
+# Run single touchpoint without waiting for replies
+python -m src.main --mode once --touch-point morning --no-wait
 
 # Run scheduler (continuous mode)
 python -m src.main --mode scheduler
