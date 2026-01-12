@@ -1,6 +1,16 @@
 import pytest
 from unittest.mock import Mock, AsyncMock
-from src.dingtalk.reply_service import DingTalkReplyService, ContentType
+
+# 尝试导入，如果 SDK 不可用则跳过测试
+try:
+    from src.dingtalk.reply_service import DingTalkReplyService, ContentType
+    HAS_SDK = True
+except ImportError:
+    HAS_SDK = False
+    DingTalkReplyService = None
+    ContentType = None
+
+pytestmark = pytest.mark.skipif(not HAS_SDK, reason="DingTalk SDK not installed")
 
 
 class TestContentType:

@@ -111,45 +111,107 @@ class PipelineCallbackHandler(GraphHandler):
 
     async def _handle_selection(self, context: MessageContext, value):
         logger.info(f"用户 {context.user_name} 选择了: {value}")
-        if self.state_machine:
-            indices = value if isinstance(value, list) else [value]
-            self.state_machine.record_selection(indices)
-        if self.dingtalk_service:
-            await self.dingtalk_service.send_confirmation(f"已选择: {value}")
+        try:
+            if self.state_machine:
+                indices = value if isinstance(value, list) else [value]
+                selected = self.state_machine.record_selection(indices)
+                if self.dingtalk_service:
+                    if selected:
+                        await self.dingtalk_service.send_confirmation(f"已选择: {value}")
+                    else:
+                        await self.dingtalk_service.send_message("选择无效，请检查序号是否正确")
+            elif self.dingtalk_service:
+                await self.dingtalk_service.send_confirmation(f"已选择: {value}")
+        except Exception as e:
+            logger.error(f"处理选择时出错: {e}", exc_info=True)
+            if self.dingtalk_service:
+                await self.dingtalk_service.send_message(f"选择处理失败: {e}")
 
     async def _handle_confirm(self, context: MessageContext, value):
         logger.info(f"用户 {context.user_name} 确认了选择")
-        if self.state_machine:
-            idea = self.state_machine.confirm_top1()
-            if idea and self.agents and "mvp_runner" in self.agents:
-                tasks = await self.agents["mvp_runner"].generate_tasks(idea)
-                self.state_machine.create_experiment(idea, tasks)
-        if self.dingtalk_service:
-            await self.dingtalk_service.send_confirmation("已确认，任务包已生成")
+        try:
+            if self.state_machine:
+                idea = self.state_machine.confirm_top1()
+                if not idea:
+                    if self.dingtalk_service:
+                        await self.dingtalk_service.send_message("没有找到可确认的创意，请先选择一个创意")
+                    return
+                if self.agents and "mvp_runner" in self.agents:
+                    tasks = await self.agents["mvp_runner"].generate_tasks(idea)
+                    self.state_machine.create_experiment(idea, tasks)
+                    if self.dingtalk_service:
+                        await self.dingtalk_service.send_confirmation("已确认，任务包已生成")
+                else:
+                    if self.dingtalk_service:
+                        await self.dingtalk_service.send_confirmation(f"已确认创意: {idea.get('title', '未命名')}")
+            elif self.dingtalk_service:
+                await self.dingtalk_service.send_confirmation("已确认")
+        except Exception as e:
+            logger.error(f"确认操作失败: {e}", exc_info=True)
+            if self.dingtalk_service:
+                await self.dingtalk_service.send_message(f"确认操作失败: {e}")
 
     async def _handle_start(self, context: MessageContext, value):
         logger.info(f"用户 {context.user_name} 开始实验")
-        if self.dingtalk_service:
-            await self.dingtalk_service.send_confirmation("实验已开始，加油！")
+        try:
+            if self.state_machine:
+                exp = self.state_machine.get_active_experiment()
+                if exp:
+                    self.state_machine.update_status(exp.get("id"), "in_progress")
+            if self.dingtalk_service:
+                await self.dingtalk_service.send_confirmation("实验已开始，加油！")
+        except Exception as e:
+            logger.error(f"开始实验失败: {e}", exc_info=True)
+            if self.dingtalk_service:
+                await self.dingtalk_service.send_message(f"开始实验失败: {e}")
 
     async def _handle_downgrade(self, context: MessageContext, value):
         logger.info(f"用户 {context.user_name} 请求降级")
-        if self.state_machine:
-            self.state_machine.trigger_downgrade()
-        if self.dingtalk_service:
-            await self.dingtalk_service.send_confirmation("已切换到简单模式")
+        try:
+            if self.state_machine:
+                result = self.state_machine.trigger_downgrade()
+                if self.dingtalk_service:
+                    if result:
+                        await self.dingtalk_service.send_confirmation("已切换到简单模式")
+                    else:
+                        await self.dingtalk_service.send_message("当前没有可降级的实验")
+            elif self.dingtalk_service:
+                await self.dingtalk_service.send_confirmation("已切换到简单模式")
+        except Exception as e:
+            logger.error(f"降级操作失败: {e}", exc_info=True)
+            if self.dingtalk_service:
+                await self.dingtalk_service.send_message(f"降级操作失败: {e}")
 
     async def _handle_skip(self, context: MessageContext, value):
         logger.info(f"用户 {context.user_name} 跳过当前任务")
-        if self.dingtalk_service:
-            await self.dingtalk_service.send_confirmation("已跳过，明天继续")
+        try:
+            if self.state_machine:
+                exp = self.state_machine.get_active_experiment()
+                if exp:
+                    self.state_machine.update_status(exp.get("id"), "skipped")
+            if self.dingtalk_service:
+                await self.dingtalk_service.send_confirmation("已跳过，明天继续")
+        except Exception as e:
+            logger.error(f"跳过操作失败: {e}", exc_info=True)
+            if self.dingtalk_service:
+                await self.dingtalk_service.send_message(f"跳过操作失败: {e}")
 
     async def _handle_evidence(self, context: MessageContext, value):
         logger.info(f"用户 {context.user_name} 提交证据: {value[:50]}...")
-        if self.state_machine:
-            self.state_machine.record_evidence(value)
-        if self.dingtalk_service:
-            await self.dingtalk_service.send_confirmation("证据已记录")
+        try:
+            if self.state_machine:
+                result = self.state_machine.record_evidence(value)
+                if self.dingtalk_service:
+                    if result:
+                        await self.dingtalk_service.send_confirmation("证据已记录，感谢提交！")
+                    else:
+                        await self.dingtalk_service.send_message("当前没有进行中的实验，无法记录证据")
+            elif self.dingtalk_service:
+                await self.dingtalk_service.send_confirmation("证据已记录")
+        except Exception as e:
+            logger.error(f"记录证据失败: {e}", exc_info=True)
+            if self.dingtalk_service:
+                await self.dingtalk_service.send_message(f"记录证据失败: {e}")
 
     async def _handle_unknown(self, context: MessageContext, value):
         logger.warning(f"未知输入: {value}")

@@ -35,6 +35,20 @@ class DingTalkService:
 
     def _format_morning_message(self, cards: List[Dict], ideas: List[Dict]) -> str:
         lines = ["📊 **今日创意候选**", ""]
+
+        # 显示今日输入卡片摘要
+        if cards:
+            lines.append(f"**今日素材：** 已收集 {len(cards)} 张输入卡片")
+            # 显示前3张卡片的标题
+            for card in cards[:3]:
+                title = card.get("title", "未命名")
+                industry = card.get("industry", "")
+                lines.append(f"  • {title} [{industry}]")
+            if len(cards) > 3:
+                lines.append(f"  • ...还有 {len(cards) - 3} 张")
+            lines.append("")
+
+        # 显示 Top 3 创意
         if ideas:
             lines.append("**Top 3 创意：**")
             lines.append("")
@@ -51,6 +65,7 @@ class DingTalkService:
         else:
             lines.append("暂无创意候选，请稍后再来")
             lines.append("")
+
         lines.append("━━━━━━━━━━━━━━━━━━━━")
         lines.append("回复 **1/2/3** 选择 | 回复「降级」进入简单模式")
         return "\n".join(lines)
