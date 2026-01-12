@@ -117,14 +117,22 @@ docker-compose up -d
 
 ## Environment Variables
 
-### Required for Full Functionality
+### AI Agents (Claude Agent SDK)
+
+**No API Key Required** - Claude Agent SDK uses Claude Code CLI with local authentication.
+
+Prerequisites:
+1. Install Claude Code CLI: `npm install -g @anthropic-ai/claude-code`
+2. Login via CLI: `claude login`
+3. Install SDK: `pip install claude-agent-sdk`
+
+### DingTalk Integration (Required for Notifications)
 
 | Variable | Description | Where to Get |
 |----------|-------------|--------------|
-| `ANTHROPIC_API_KEY` | Claude API key for AI agents | [Anthropic Console](https://console.anthropic.com/) |
 | `DINGTALK_CLIENT_ID` | DingTalk app client ID | DingTalk Developer Portal |
 | `DINGTALK_CLIENT_SECRET` | DingTalk app secret | DingTalk Developer Portal |
-| `DINGTALK_CORP_ID` | DingTalk corporation ID | DingTalk Admin Console |
+| `DINGTALK_CONVERSATION_ID` | Target group conversation ID | DingTalk API |
 
 ### Optional
 
@@ -137,16 +145,16 @@ docker-compose up -d
 | `TIKHUB_API_KEY` | (empty) | For Twitter/Reddit data |
 | `TZ` | `Asia/Shanghai` | Timezone |
 
-### Demo Mode (No API Keys)
+### Demo Mode
 
-The pipeline runs in **demo mode** without external dependencies:
+The pipeline runs in **demo mode** without DingTalk:
 
 ```bash
 # No environment variables needed for testing
 python -m src.main --status
 
 # Output shows:
-# Claude SDK:        Disabled
+# Claude SDK:        Enabled (if claude-agent-sdk installed)
 # DingTalk SDK:      Disabled
 ```
 
