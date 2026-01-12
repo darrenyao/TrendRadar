@@ -3,7 +3,8 @@
 Designs quick MVP experiments for validating ideas.
 """
 import re
-from typing import Optional, List
+import json
+from typing import Optional, List, Dict, Any
 
 from .base_agent import BaseAgent
 
@@ -98,3 +99,124 @@ class MVPRunnerAgent(BaseAgent):
         # Match patterns like exp-abc12345 or exp-2026-01-12-001
         pattern = r'exp-[a-f0-9]{8}|exp-\d{4}-\d{2}-\d{2}-\d{3}'
         return re.findall(pattern, response)
+
+    async def generate_tasks(self, idea: Dict[str, Any]) -> Dict[str, Any]:
+        """Generate experiment tasks for an idea (compatibility method for pipeline_handler).
+
+        This method is called by PipelineCallbackHandler to create experiment tasks
+        from a confirmed idea dictionary.
+
+        Args:
+            idea: Idea dictionary containing id, title, one_liner, problem, etc.
+
+        Returns:
+            Dictionary containing experiment data with tasks list and metadata.
+        """
+        idea_id = idea.get("id", "")
+        idea_title = idea.get("title", "未命名创意")
+        one_liner = idea.get("one_liner", "")
+        problem = idea.get("problem", "")
+        mvp_time = idea.get("mvp_time", 45)
+
+        prompt = f"""为以下创意设计一个MVP验证实验：
+
+创意ID: {idea_id}
+标题: {idea_title}
+一句话描述: {one_liner}
+解决问题: {problem}
+预计时间: {mvp_time}分钟
+
+请设计实验任务并返回以下JSON格式（不要使用markdown代码块，直接返回JSON）:
+{{
+    "idea_id": "{idea_id}",
+    "idea_title": "{idea_title}",
+    "estimated_time": {mvp_time},
+    "tasks": [
+        {{
+            "id": "task-01",
+            "description": "任务描述",
+            "time_estimate": 10,
+            "deliverable": "交付物",
+            "success_criteria": "成功标准",
+            "tools": ["工具1"],
+            "status": "pending"
+        }}
+    ],
+    "three_person_rule": {{
+        "target_profiles": [
+            {{"type": "用户类型", "where_to_find": "哪里找"}}
+        ],
+        "recruit_script": "招募话术",
+        "feedback_template": "反馈模板"
+    }}
+}}
+
+请直接返回JSON，不要其他说明。
+"""
+        result = await self.run(prompt)
+        return self._parse_experiment_data(result, idea)
+
+    def _parse_experiment_data(self, response: str, idea: Dict[str, Any]) -> Dict[str, Any]:
+        """Parse experiment data from agent response.
+
+        Args:
+            response: Agent response text containing JSON experiment data.
+            idea: Original idea dictionary for fallback values.
+
+        Returns:
+            Experiment dictionary with tasks and metadata.
+        """
+        # Try to find JSON in response
+        try:
+            # Look for JSON object pattern
+            match = re.search(r'\{[\s\S]*\}', response)
+            if match:
+                data = json.loads(match.group())
+                # Validate required fields exist
+                if "tasks" in data:
+                    return data
+        except json.JSONDecodeError:
+            pass
+
+        # Fallback: return basic experiment structure
+        return {
+            "idea_id": idea.get("id", ""),
+            "idea_title": idea.get("title", "未命名创意"),
+            "estimated_time": idea.get("mvp_time", 45),
+            "tasks": [
+                {
+                    "id": "task-01",
+                    "description": "创建项目基础结构",
+                    "time_estimate": 10,
+                    "deliverable": "项目目录和基础文件",
+                    "success_criteria": "项目可运行",
+                    "tools": ["IDE"],
+                    "status": "pending"
+                },
+                {
+                    "id": "task-02",
+                    "description": "实现核心功能",
+                    "time_estimate": 20,
+                    "deliverable": "可演示的原型",
+                    "success_criteria": "主功能可用",
+                    "tools": ["IDE", "AI辅助"],
+                    "status": "pending"
+                },
+                {
+                    "id": "task-03",
+                    "description": "部署并分享给3人测试",
+                    "time_estimate": 15,
+                    "deliverable": "部署链接和用户反馈",
+                    "success_criteria": "至少收到1条反馈",
+                    "tools": ["部署平台"],
+                    "status": "pending"
+                }
+            ],
+            "three_person_rule": {
+                "target_profiles": [
+                    {"type": "目标用户", "where_to_find": "社交媒体"}
+                ],
+                "recruit_script": "嗨，我在做一个小实验，想邀请你花5分钟试用一下",
+                "feedback_template": "用户:\n第一反应:\n是否愿意继续使用:\n改进建议:"
+            }
+        }

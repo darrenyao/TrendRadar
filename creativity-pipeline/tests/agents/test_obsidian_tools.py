@@ -3,6 +3,15 @@ import pytest
 import json
 from pathlib import Path
 
+# Check if Claude Agent SDK is available
+try:
+    from claude_agent_sdk import tool
+    HAS_CLAUDE_SDK = True
+except ImportError:
+    HAS_CLAUDE_SDK = False
+
+pytestmark = pytest.mark.skipif(not HAS_CLAUDE_SDK, reason="Claude Agent SDK not installed")
+
 
 @pytest.fixture
 def temp_vault(tmp_path):
@@ -94,7 +103,7 @@ created: '2026-01-12T11:00:00'
 @pytest.mark.asyncio
 async def test_read_cards_returns_cards(temp_vault, monkeypatch):
     """Test read_cards returns all cards from vault."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", str(temp_vault))
+    monkeypatch.setenv("VAULT_PATH", str(temp_vault))
 
     from src.agents.tools.obsidian_tools import _read_cards_impl
 
@@ -110,7 +119,7 @@ async def test_read_cards_returns_cards(temp_vault, monkeypatch):
 @pytest.mark.asyncio
 async def test_read_ideas_returns_ideas(temp_vault, monkeypatch):
     """Test read_ideas returns all ideas from vault."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", str(temp_vault))
+    monkeypatch.setenv("VAULT_PATH", str(temp_vault))
 
     from src.agents.tools.obsidian_tools import _read_ideas_impl
 
@@ -126,7 +135,7 @@ async def test_read_ideas_returns_ideas(temp_vault, monkeypatch):
 @pytest.mark.asyncio
 async def test_read_experiments_returns_experiments(temp_vault, monkeypatch):
     """Test read_experiments returns all experiments from vault."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", str(temp_vault))
+    monkeypatch.setenv("VAULT_PATH", str(temp_vault))
 
     from src.agents.tools.obsidian_tools import _read_experiments_impl
 
@@ -142,7 +151,7 @@ async def test_read_experiments_returns_experiments(temp_vault, monkeypatch):
 @pytest.mark.asyncio
 async def test_create_card_creates_file(temp_vault, monkeypatch):
     """Test create_card creates a new card file."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", str(temp_vault))
+    monkeypatch.setenv("VAULT_PATH", str(temp_vault))
 
     from src.agents.tools.obsidian_tools import _create_card_impl
 
@@ -168,7 +177,7 @@ async def test_create_card_creates_file(temp_vault, monkeypatch):
 @pytest.mark.asyncio
 async def test_create_idea_creates_file(temp_vault, monkeypatch):
     """Test create_idea creates a new idea file."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", str(temp_vault))
+    monkeypatch.setenv("VAULT_PATH", str(temp_vault))
 
     from src.agents.tools.obsidian_tools import _create_idea_impl
 
@@ -197,7 +206,7 @@ async def test_create_idea_creates_file(temp_vault, monkeypatch):
 @pytest.mark.asyncio
 async def test_create_experiment_creates_file(temp_vault, monkeypatch):
     """Test create_experiment creates a new experiment file."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", str(temp_vault))
+    monkeypatch.setenv("VAULT_PATH", str(temp_vault))
 
     from src.agents.tools.obsidian_tools import _create_experiment_impl
 
@@ -214,7 +223,12 @@ async def test_create_experiment_creates_file(temp_vault, monkeypatch):
                 "success_criteria": "成功标准",
                 "status": "pending"
             }
-        ]
+        ],
+        "three_person_rule": {
+            "target_profiles": [{"type": "开发者", "where_to_find": "GitHub"}],
+            "recruit_script": "招募话术",
+            "feedback_template": "反馈模板"
+        }
     })
 
     assert "content" in result
@@ -225,7 +239,7 @@ async def test_create_experiment_creates_file(temp_vault, monkeypatch):
 @pytest.mark.asyncio
 async def test_update_status_updates_card(temp_vault, monkeypatch):
     """Test update_status updates card status."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", str(temp_vault))
+    monkeypatch.setenv("VAULT_PATH", str(temp_vault))
 
     from src.agents.tools.obsidian_tools import _update_status_impl, _read_cards_impl
 
@@ -246,7 +260,7 @@ async def test_update_status_updates_card(temp_vault, monkeypatch):
 
 def test_get_all_tools_returns_list(temp_vault, monkeypatch):
     """Test get_all_tools returns all tool functions."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", str(temp_vault))
+    monkeypatch.setenv("VAULT_PATH", str(temp_vault))
 
     from src.agents.tools.obsidian_tools import get_all_tools
 

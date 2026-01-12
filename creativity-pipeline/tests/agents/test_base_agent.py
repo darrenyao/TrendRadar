@@ -2,10 +2,19 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 
+# Check if Claude Agent SDK is available
+try:
+    from claude_agent_sdk import ClaudeSDKClient
+    HAS_CLAUDE_SDK = True
+except ImportError:
+    HAS_CLAUDE_SDK = False
+
+pytestmark = pytest.mark.skipif(not HAS_CLAUDE_SDK, reason="Claude Agent SDK not installed")
+
 
 def test_base_agent_creates_mcp_server(monkeypatch):
     """Test BaseAgent creates MCP server with Obsidian tools."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.base_agent import BaseAgent
 
@@ -21,7 +30,7 @@ def test_base_agent_creates_mcp_server(monkeypatch):
 
 def test_base_agent_mcp_server_is_singleton(monkeypatch):
     """Test that MCP server is created only once."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.base_agent import BaseAgent
 
@@ -38,7 +47,7 @@ def test_base_agent_mcp_server_is_singleton(monkeypatch):
 
 def test_base_agent_requires_system_prompt(monkeypatch):
     """Test that BaseAgent requires get_system_prompt implementation."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.base_agent import BaseAgent
 
@@ -49,7 +58,7 @@ def test_base_agent_requires_system_prompt(monkeypatch):
 
 def test_base_agent_accepts_custom_model(monkeypatch):
     """Test BaseAgent accepts custom model parameter."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.base_agent import BaseAgent
 
@@ -63,7 +72,7 @@ def test_base_agent_accepts_custom_model(monkeypatch):
 
 def test_base_agent_default_model(monkeypatch):
     """Test BaseAgent has default model."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.base_agent import BaseAgent
 

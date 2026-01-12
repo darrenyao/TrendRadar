@@ -2,8 +2,9 @@
 
 Provides abstract base class for all pipeline agents with Claude Agent SDK integration.
 """
+import json
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Optional, Dict, Any
 
 from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, create_sdk_mcp_server
 
@@ -77,3 +78,18 @@ class BaseAgent(ABC):
                 if hasattr(message, 'text'):
                     response_text += message.text
             return response_text
+
+    async def run_with_data(self, user_message: str, data: Dict[str, Any]) -> str:
+        """Execute agent with user message and additional data context.
+
+        Formats data as JSON and appends to the user message for context.
+
+        Args:
+            user_message: The message to process.
+            data: Additional structured data to include in context.
+
+        Returns:
+            Agent response text.
+        """
+        context = f"{user_message}\n\n数据:\n```json\n{json.dumps(data, ensure_ascii=False, indent=2)}\n```"
+        return await self.run(context)

@@ -2,10 +2,19 @@
 import pytest
 from unittest.mock import AsyncMock, patch
 
+# Check if Claude Agent SDK is available
+try:
+    from claude_agent_sdk import ClaudeSDKClient
+    HAS_CLAUDE_SDK = True
+except ImportError:
+    HAS_CLAUDE_SDK = False
+
+pytestmark = pytest.mark.skipif(not HAS_CLAUDE_SDK, reason="Claude Agent SDK not installed")
+
 
 def test_input_feeder_has_correct_system_prompt(monkeypatch):
     """Test InputFeederAgent has domain-specific prompt."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.input_feeder import InputFeederAgent
 
@@ -19,7 +28,7 @@ def test_input_feeder_has_correct_system_prompt(monkeypatch):
 
 def test_input_feeder_is_base_agent(monkeypatch):
     """Test InputFeederAgent inherits from BaseAgent."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.input_feeder import InputFeederAgent
     from src.agents.base_agent import BaseAgent
@@ -30,7 +39,7 @@ def test_input_feeder_is_base_agent(monkeypatch):
 
 def test_input_feeder_has_mcp_server(monkeypatch):
     """Test InputFeederAgent has access to MCP server."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.input_feeder import InputFeederAgent
 
@@ -39,8 +48,10 @@ def test_input_feeder_has_mcp_server(monkeypatch):
     assert server is not None
 
 
-def test_parse_card_ids_extracts_ids():
+def test_parse_card_ids_extracts_ids(monkeypatch):
     """Test _parse_card_ids extracts card IDs from text."""
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
+
     from src.agents.input_feeder import InputFeederAgent
 
     agent = InputFeederAgent()
@@ -53,8 +64,10 @@ def test_parse_card_ids_extracts_ids():
     assert "card-def67890" in ids
 
 
-def test_parse_card_ids_handles_empty_response():
+def test_parse_card_ids_handles_empty_response(monkeypatch):
     """Test _parse_card_ids handles empty response."""
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
+
     from src.agents.input_feeder import InputFeederAgent
 
     agent = InputFeederAgent()
@@ -65,7 +78,7 @@ def test_parse_card_ids_handles_empty_response():
 
 def test_input_feeder_prompt_mentions_heat_score(monkeypatch):
     """Test prompt includes heat score guidance."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.input_feeder import InputFeederAgent
 

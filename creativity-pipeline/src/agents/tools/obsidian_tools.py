@@ -4,16 +4,23 @@ Provides MCP tools that wrap ObsidianStore operations for use with Claude Agent 
 """
 import os
 import json
+import logging
 from typing import Dict, Any, List
 
 from claude_agent_sdk import tool
 
 from ...state import ObsidianStore
 
+logger = logging.getLogger(__name__)
+
 
 def get_store() -> ObsidianStore:
-    """Get ObsidianStore instance with configured vault path."""
-    vault_path = os.environ.get("OBSIDIAN_VAULT_PATH", "./vault")
+    """Get ObsidianStore instance with configured vault path.
+
+    Uses VAULT_PATH environment variable for consistency with state module.
+    Falls back to OBSIDIAN_VAULT_PATH for backwards compatibility.
+    """
+    vault_path = os.environ.get("VAULT_PATH") or os.environ.get("OBSIDIAN_VAULT_PATH", "./vault")
     return ObsidianStore(vault_path)
 
 
@@ -30,8 +37,8 @@ async def _read_cards_impl(args: dict) -> dict:
             with open(file_path, "r", encoding="utf-8") as f:
                 frontmatter, body = store._parse_frontmatter(f.read())
                 cards.append({**frontmatter, "body": body})
-        except Exception:
-            pass
+        except Exception as e:
+            logger.warning(f"Failed to read card from {file_path}: {e}")
 
     return {
         "content": [{"type": "text", "text": json.dumps(cards, ensure_ascii=False)}]
@@ -47,8 +54,8 @@ async def _read_ideas_impl(args: dict) -> dict:
             with open(file_path, "r", encoding="utf-8") as f:
                 frontmatter, body = store._parse_frontmatter(f.read())
                 ideas.append({**frontmatter, "body": body})
-        except Exception:
-            pass
+        except Exception as e:
+            logger.warning(f"Failed to read idea from {file_path}: {e}")
 
     # Sort by total score descending
     ideas.sort(key=lambda x: x.get("scores", {}).get("total", 0), reverse=True)
@@ -67,8 +74,8 @@ async def _read_experiments_impl(args: dict) -> dict:
             with open(file_path, "r", encoding="utf-8") as f:
                 frontmatter, body = store._parse_frontmatter(f.read())
                 experiments.append({**frontmatter, "body": body})
-        except Exception:
-            pass
+        except Exception as e:
+            logger.warning(f"Failed to read experiment from {file_path}: {e}")
 
     # Sort by created date descending
     experiments.sort(key=lambda x: x.get("created", ""), reverse=True)
@@ -235,7 +242,8 @@ async def create_idea(args: dict) -> dict:
         "idea_id": str,
         "idea_title": str,
         "estimated_time": int,
-        "tasks": list
+        "tasks": list,
+        "three_person_rule": dict
     }
 )
 async def create_experiment(args: dict) -> dict:

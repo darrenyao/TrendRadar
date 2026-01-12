@@ -1,10 +1,19 @@
 """Tests for IdeaFactoryAgent."""
 import pytest
 
+# Check if Claude Agent SDK is available
+try:
+    from claude_agent_sdk import ClaudeSDKClient
+    HAS_CLAUDE_SDK = True
+except ImportError:
+    HAS_CLAUDE_SDK = False
+
+pytestmark = pytest.mark.skipif(not HAS_CLAUDE_SDK, reason="Claude Agent SDK not installed")
+
 
 def test_idea_factory_has_correct_system_prompt(monkeypatch):
     """Test IdeaFactoryAgent has domain-specific prompt."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.idea_factory import IdeaFactoryAgent
 
@@ -18,7 +27,7 @@ def test_idea_factory_has_correct_system_prompt(monkeypatch):
 
 def test_idea_factory_is_base_agent(monkeypatch):
     """Test IdeaFactoryAgent inherits from BaseAgent."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.idea_factory import IdeaFactoryAgent
     from src.agents.base_agent import BaseAgent
@@ -29,7 +38,7 @@ def test_idea_factory_is_base_agent(monkeypatch):
 
 def test_idea_factory_prompt_mentions_scoring(monkeypatch):
     """Test prompt includes scoring guidance."""
-    monkeypatch.setenv("OBSIDIAN_VAULT_PATH", "/tmp/vault")
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
 
     from src.agents.idea_factory import IdeaFactoryAgent
 
@@ -41,8 +50,10 @@ def test_idea_factory_prompt_mentions_scoring(monkeypatch):
     assert "market" in prompt or "市场" in prompt
 
 
-def test_parse_idea_ids_extracts_ids():
+def test_parse_idea_ids_extracts_ids(monkeypatch):
     """Test _parse_idea_ids extracts idea IDs from text."""
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
+
     from src.agents.idea_factory import IdeaFactoryAgent
 
     agent = IdeaFactoryAgent()
@@ -55,8 +66,10 @@ def test_parse_idea_ids_extracts_ids():
     assert "idea-def67890" in ids
 
 
-def test_parse_idea_ids_handles_date_format():
+def test_parse_idea_ids_handles_date_format(monkeypatch):
     """Test _parse_idea_ids handles date-based IDs."""
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
+
     from src.agents.idea_factory import IdeaFactoryAgent
 
     agent = IdeaFactoryAgent()
@@ -68,8 +81,10 @@ def test_parse_idea_ids_handles_date_format():
     assert "idea-2026-01-12-001" in ids
 
 
-def test_parse_idea_ids_handles_empty_response():
+def test_parse_idea_ids_handles_empty_response(monkeypatch):
     """Test _parse_idea_ids handles empty response."""
+    monkeypatch.setenv("VAULT_PATH", "/tmp/vault")
+
     from src.agents.idea_factory import IdeaFactoryAgent
 
     agent = IdeaFactoryAgent()
