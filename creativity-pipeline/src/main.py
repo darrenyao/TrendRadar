@@ -76,12 +76,17 @@ def get_dingtalk_service() -> Optional[DingTalkService]:
     """Get or initialize DingTalk service."""
     global _dingtalk_service
     if _dingtalk_service is None and HAS_REPLY and reply_service:
+        # 支持单聊模式（工号）或群聊模式（conversation_id）
+        user_id = os.environ.get("DINGTALK_USER_ID", "")
         conversation_id = os.environ.get("DINGTALK_CONVERSATION_ID", "")
-        if conversation_id:
-            _dingtalk_service = DingTalkService(reply_service, conversation_id)
-            logger.info("DingTalk service initialized")
+
+        target = user_id or conversation_id
+        if target:
+            _dingtalk_service = DingTalkService(reply_service, target)
+            mode = "单聊" if user_id else "群聊"
+            logger.info(f"DingTalk service initialized ({mode}: {target})")
         else:
-            logger.warning("DINGTALK_CONVERSATION_ID not set")
+            logger.warning("DINGTALK_USER_ID or DINGTALK_CONVERSATION_ID not set")
     return _dingtalk_service
 
 

@@ -132,7 +132,8 @@ Prerequisites:
 |----------|-------------|--------------|
 | `DINGTALK_CLIENT_ID` | DingTalk app client ID | DingTalk Developer Portal |
 | `DINGTALK_CLIENT_SECRET` | DingTalk app secret | DingTalk Developer Portal |
-| `DINGTALK_CONVERSATION_ID` | Target group conversation ID | DingTalk API |
+| `DINGTALK_USER_ID` | 单聊：接收人工号 | 如 `107578` |
+| `DINGTALK_CONVERSATION_ID` | 群聊：会话 ID（可选） | DingTalk API |
 
 ### Optional
 
